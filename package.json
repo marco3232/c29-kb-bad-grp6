@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "tsc --noEmit && jest",
+    "test": "npm run type-check && npm run jest",
+    "type-check":"tsc --noEmit",
+    "jest":"jest",
     "build": "tsc -p .",
     "start": "ts-node-dev server.ts",
     "db:dev": "run-s db:update db:plan db:update",
