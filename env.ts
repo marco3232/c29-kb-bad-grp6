@@ -63,9 +63,9 @@ function loadEnv() {
           DB_PASSWORD: '',
         }
       populateEnv(env, { mode: 'halt' })
+      console.log("check env",env)
       return env
       }
-
 
       default: 
         throw new Error('Unknow NODE_ENV: ' + env.NODE_ENV)
