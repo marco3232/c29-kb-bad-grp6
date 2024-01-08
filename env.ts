@@ -41,6 +41,7 @@ function loadEnv() {
           POSTGRES_PORT: 5432,
         }
       populateEnv(env, { mode: 'halt' })
+      console.log("check2",env)
       return {
         ...env,
         DB_HOST:env.POSTGRES_HOST,
