@@ -26,6 +26,12 @@ jobs:
           POSTGRES_PORT: ${{env.POSTGRES_POST}}
         ports:
           - 5432:5432
+    env:
+      DB_NAME: ${{env.POSTGRES_DB}}
+      DB_USERNAME: ${{env.POSTGRES_USER}}
+      DB_PASSWORD: ${{env.POSTGRES_PASSWORD}}
+      DB_HOST: ${{env.POSTGRES_HOST}}
+      DB_PORT: ${{env.POSTGRES_PORT}}
     steps:
       - uses: actions/checkout@v3
       - name: install dependencies
