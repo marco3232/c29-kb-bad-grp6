@@ -13,6 +13,17 @@ const config: { [key: string]: Knex.Config } = {
       multipleStatements: true,
     },
   },
+  test: {
+    client: 'pg',
+    connection: {
+      database: env.DB_NAME,
+      user: env.DB_USERNAME,
+      password: env.DB_PASSWORD,
+      host: env.DB_HOST,
+      port: env.DB_PORT,
+      multipleStatements: true,
+    },
+  },
   production: {
     client: 'pg',
     connection: {
