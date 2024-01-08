@@ -188,3 +188,7 @@ $RECYCLE.BIN/
 # python
 .venv
 tf_python
+
+# jest
+
+yarn.lock
