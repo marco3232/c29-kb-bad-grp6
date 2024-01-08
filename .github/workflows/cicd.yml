@@ -1,0 +1,39 @@
+name: rentngo-cicd
+on:
+  push:
+    branches:
+      - "*"
+  workflow_dispatch:
+
+env:
+  POSTGRES_DB: ci
+  POSTGRES_USER: ci
+  POSTGRES_PASSWORD: ci
+  POSTGRES_HOST: db_server
+  POSTGRES_POST: 5432
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    container: node:20.10.0-slim
+    services:
+      db_server:
+        image: postgres:14.10-alpine3.19
+        env:
+          POSTGRES_DB: ${{env.POSTGRES_DB}}
+          POSTGRES_USER: ${{env.POSTGRES_USER}}
+          POSTGRES_PASSWORD: ${{env.POSTGRES_PASSWORD}}
+          POSTGRES_PORT: ${{env.POSTGRES_POST}}
+        ports:
+          - 5432:5432
+    steps:
+      - uses: actions/checkout@v3
+      - name: install dependencies
+        run: |
+          npm install 
+      - name: migrate database
+        run: |
+          npx knex migrate:latest --env ci
+      - name: run tests cases
+        run: |
+          npm test

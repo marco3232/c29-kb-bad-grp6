@@ -1,5 +1,7 @@
-import Knex from "knex"
+import Knex from 'knex'
+import { env } from './env'
 
 let config = require('./knexfile')
+let profile = config[env.NODE_ENV]
 
-export let knex = Knex(config.development)
+export let knex = Knex(profile)
