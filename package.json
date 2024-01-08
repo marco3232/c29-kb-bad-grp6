@@ -5,7 +5,7 @@
   "scripts": {
     "test": "npm run type-check && npm run jest",
     "type-check":"tsc --noEmit",
-    "jest":"jest",
+    "jest":"jest -i",
     "build": "tsc -p .",
     "start": "ts-node-dev server.ts",
     "db:dev": "run-s db:update db:plan db:update",
