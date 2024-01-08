@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "tsc --noEmit",
+    "test": "tsc --noEmit && jest",
     "build": "tsc -p .",
     "start": "ts-node-dev server.ts",
     "db:dev": "run-s db:update db:plan db:update",
