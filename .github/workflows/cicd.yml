@@ -34,7 +34,7 @@ jobs:
           npm install 
       - name: migrate database
         run: |
-          npx knex migrate:latest --env ci
+          npx knex migrate:latest --env ci 
       - name: run tests cases
         run: |
           npm test
