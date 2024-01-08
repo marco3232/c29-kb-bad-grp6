@@ -8,6 +8,7 @@ function loadEnv() {
       NODE_ENV : "development",
     }
     populateEnv(env, { mode: 'halt'})
+    console.log("check env",env)
     switch(env.NODE_ENV) {
       case 'test' : {
         const env = {
