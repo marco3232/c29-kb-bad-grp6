@@ -7,15 +7,10 @@ on:
 
 env:
   POSTGRES_DB: ci
-  DB_NAME: ci
   POSTGRES_USER: ci
-  DB_USERNAME: ci
   POSTGRES_PASSWORD: ci
-  DB_PASSWORD: ci
   POSTGRES_HOST: db_server
-  DB_HOST: db_server
   POSTGRES_PORT: 5432
-  DB_PORT: 5432
 
 jobs:
   test:
