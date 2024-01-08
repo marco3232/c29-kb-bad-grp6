@@ -16,6 +16,7 @@ let pgConfig: Knex.Config = {
 const config: { [key: string]: Knex.Config } = {
   development: pgConfig,
   test: pgConfig,
+  ci: pgConfig,
   production: pgConfig,
 }
 
