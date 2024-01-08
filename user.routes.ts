@@ -1,7 +1,7 @@
 import { Router } from "express";
 
-import { knex } from "./db";
 import { hashPassword } from "./hash";
+import { knex } from "./db";
 
 export let userRoutes = Router();
 
@@ -15,7 +15,7 @@ userRoutes.post("/user/register", async (req, res, next) => {
   } else {
   await knex("users")
     .insert({ email: req.body.email, password: hashed, tel: req.body.tel })
-    .catch((e) => console.error(e))
+    .catch((e: any) => console.error(e))
     .then(() => knex.destroy());
   res.json({ message: "success register" });}
 });
