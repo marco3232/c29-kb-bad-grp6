@@ -42,7 +42,7 @@ function loadEnv() {
       populateEnv(env, { mode: 'halt' })
       return {
         ...env,
-        DB_HOST:env.POSTGRES_DB,
+        DB_HOST:env.POSTGRES_HOST,
         DB_PORT: env.POSTGRES_PORT,
         DB_NAME: env.POSTGRES_DB,
         DB_USERNAME: env.POSTGRES_USER,
