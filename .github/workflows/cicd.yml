@@ -24,8 +24,8 @@ jobs:
         POSTGRES_USER: ${{env.POSTGRES_USER}}
         POSTGRES_PASSWORD: ${{env.POSTGRES_PASSWORD}}
         POSTGRES_PASSWORD: ${{env.POSTGRES_POST}}
-          ports:
-          - 5432:5432
+      ports:
+        - 5432:5432
     steps:
       - uses: actions/checkout@v3
       - name: install dependencies
