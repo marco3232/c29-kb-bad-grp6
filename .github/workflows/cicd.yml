@@ -14,18 +14,18 @@ env:
 
 jobs:
   test:
-  runs-on: ubuntu-latest
-  container: node:20.10.0-slim
-  services:
-    db_server:
-      image: postgres:14.10-alpine3.19
-      env:
-        POSTGRES_DB: ${{env.POSTGRES_DB}}
-        POSTGRES_USER: ${{env.POSTGRES_USER}}
-        POSTGRES_PASSWORD: ${{env.POSTGRES_PASSWORD}}
-        POSTGRES_PASSWORD: ${{env.POSTGRES_POST}}
-      ports:
-        - 5432:5432
+    runs-on: ubuntu-latest
+    container: node:20.10.0-slim
+    services:
+      db_server:
+        image: postgres:14.10-alpine3.19
+        env:
+          POSTGRES_DB: ${{env.POSTGRES_DB}}
+          POSTGRES_USER: ${{env.POSTGRES_USER}}
+          POSTGRES_PASSWORD: ${{env.POSTGRES_PASSWORD}}
+          POSTGRES_PASSWORD: ${{env.POSTGRES_POST}}
+        ports:
+          - 5432:5432
     steps:
       - uses: actions/checkout@v3
       - name: install dependencies
