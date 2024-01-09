@@ -67,4 +67,7 @@ jobs:
       - name: check connection to server
         run: |
           ssh ${{env.SERVER_HOST}}
+      - name: build deploy to server
+        run: |
+          ./scripts/deploy.sh
  
