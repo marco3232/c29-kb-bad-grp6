@@ -12,7 +12,7 @@ env:
   POSTGRES_HOST: db_server
   POSTGRES_PORT: 5432
   NODE_ENV: ci
-  SERVER_USER: rentngo
+  SERVER_USER: rentngouat
   SERVER_HOST: rentngo.marcoding.me
 
 jobs:
@@ -45,13 +45,17 @@ jobs:
     runs-on: ubuntu-latest
     needs: test
     steps:
-     - name: check connection to server
+     - name: add server fingerprint
        run: |
          mkdir -p ~/.ssh   
          cd ~/.ssh
          ssh-keyscan ${{env.SERVER_HOST}} >> ~/.ssh/known_hosts
-         echo ${{secrets.SSH_PRIVATE_KEY}} > key.pem
+     - name: setup ssh private key
+       run: |
+         cd ~/.ssh
+         echo "${{secrets.SSH_PRIVATE_KEY}}" > key.pem
          chmod 400 key.pem
-         ssh -i key.pem ${{env.SERVER_USER}}@${{env.SERVER_HOST}}
-
+    - name: check connection to server
+      run: |
+        ssh -i ~/.ssh/key.pem ${{env.SERVER_USER}}@${{env.SERVER_HOST}}
  
