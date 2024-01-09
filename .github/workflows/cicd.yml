@@ -113,7 +113,7 @@ jobs:
       - name: Migrate database
         run: |
           ssh ${{env.SERVER_HOST}} "
-            sp\ource ~/.nvm/nvm.sh
+            source ~/.nvm/nvm.sh
             cd ${{env.SERVER_DIR}}
             cd .env dist/
             cd dist
