@@ -1,11 +1,12 @@
 import express, { ErrorRequestHandler, Request, Response } from "express";
 import { print } from "listening-on";
-import { knex } from "./db";
+import { createKnex } from "./db";
 // import { RequestLog } from './types'
 import { HttpError } from "./http.error";
 import { env } from "./env";
 import { userRoutes } from "./user.routes";
 
+let knex = createKnex()
 let app = express();
 
 app.use(express.static("public"));

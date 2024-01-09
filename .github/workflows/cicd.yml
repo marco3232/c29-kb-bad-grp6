@@ -3,28 +3,31 @@ on:
   push:
     branches:
       - "*"
-      workflow_dispatch:
+  workflow_dispatch:
 
 env:
   POSTGRES_DB: ci
   POSTGRES_USER: ci
   POSTGRES_PASSWORD: ci
   POSTGRES_HOST: db_server
-  POSTGRES_POST: 5432
+  POSTGRES_PORT: 5432
+  NODE_ENV: ci
+  SERVER_USER: rentngo
+  SERVER_HOST: rentngo.marcoding.me
 
 jobs:
   test:
-  runs-on: ubuntu-latest
-  container: node:20.10.0-slim
-  services:
-    db_server:
-      image: postgres:14.10-alpine3.19
-      env:
-        POSTGRES_DB: ${{env.POSTGRES_DB}}
-        POSTGRES_USER: ${{env.POSTGRES_USER}}
-        POSTGRES_PASSWORD: ${{env.POSTGRES_PASSWORD}}
-        POSTGRES_PASSWORD: ${{env.POSTGRES_POST}}
-          ports:
+    runs-on: ubuntu-latest
+    container: node:20.10.0-slim
+    services:
+      db_server:
+        image: postgres:14.10-alpine3.19
+        env:
+          POSTGRES_DB: ${{env.POSTGRES_DB}}
+          POSTGRES_USER: ${{env.POSTGRES_USER}}
+          POSTGRES_PASSWORD: ${{env.POSTGRES_PASSWORD}}
+          POSTGRES_PORT: ${{env.POSTGRES_POST}}
+        ports:
           - 5432:5432
     steps:
       - uses: actions/checkout@v3
@@ -33,7 +36,22 @@ jobs:
           npm install 
       - name: migrate database
         run: |
-          npx knex migrate:latest --env ci
+          npx knex migrate:latest --env ci 
       - name: run tests cases
         run: |
           npm test
+  deploy:
+    if: github.ref_name == 'production'
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+     - name: check connection to server
+       run: |
+         mkdir -p ~/.ssh   
+         cd ~/.ssh
+         ssh-keyscan ${{env.SERVER_HOST}} >> ~/.ssh/known_hosts
+         echo ${{secrets.SSH_PRIVATE_KEY}} > key.pem
+         chmod 400 key.pem
+         ssh ${{env.SERVER_USER}}@${{env.SERVER_HOST}}
+
+ 
