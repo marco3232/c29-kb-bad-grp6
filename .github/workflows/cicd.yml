@@ -15,6 +15,7 @@ env:
   SERVER_USER: rentngouat
   SERVER_DOMAIN: rentngo.marcoding.me
   SERVER_HOST: rentngo
+  SERVER_DIR: ~/rentngo
 
 jobs:
   test:
@@ -41,11 +42,31 @@ jobs:
       - name: run tests cases
         run: |
           npm test
-  deploy:
-    if: github.ref_name == 'production'
-    # needs: test
+  build:
     runs-on: ubuntu-latest
     container: node:20.10.0-slim
+    # needs: test
+    steps:
+      - uses: actions/checkout@v3
+      - name: install dependencies 
+      - name: build typescript project
+        run: |
+          c29-kb-bad-grp6
+          npm run build
+      - name: prepare archive built files
+        run: |
+          c29-kb-bad-grp6
+          mkdir -p release
+          mv package.json dist public release
+      - name: upload release archive
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-archive
+          path: c29-kb-bad-grp6/release      
+  deploy:
+    if: github.ref_name == 'production'
+    needs: build
+    runs-on: ubuntu-latest
     steps:
       - name: add server fingerprint
         run: |
@@ -68,8 +89,18 @@ jobs:
       - name: check connection to server
         run: |
           ssh ${{env.SERVER_HOST}}
-      - uses: actions/checkout@v3
-      - name: build deploy to server
+      - name: download release archive
+        uses: actions/download-artifact@v4
+        with:
+          name: release-archive
+          path: c29-kb-bad-grp6/release
+      - name: upload to server
         run: |
-          ./scripts/deploy.sh
+          c29-kb-bad-grp6/release
+          ls -l
+          scp -r \
+            package.json \
+            dist \
+            public \
+            "${{env.SERVER_HOST}}:${{env.SERVER_DIR}}/"
  
