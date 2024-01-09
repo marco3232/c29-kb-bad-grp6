@@ -13,7 +13,8 @@ env:
   POSTGRES_PORT: 5432
   NODE_ENV: ci
   SERVER_USER: rentngouat
-  SERVER_HOST: rentngo.marcoding.me
+  SERVER_HOSTNAME: rentngo.marcoding.me
+  SERVER_HOST: rentngo
 
 jobs:
   test:
@@ -55,7 +56,15 @@ jobs:
           cd ~/.ssh
           echo "${{secrets.SSH_PRIVATE_KEY}}" > key.pem
           chmod 400 key.pem
+      - name: set up ssh profile
+        run: |
+          echo "
+          Host ${{env.SERVER_HOST}}
+             Hostname ${{env.SERVER_HOSTNAME}}
+             User ${{env.SERVER_USER}}
+             IdentityFile = ~/.ssh/key.pem
+          " > ~/.ssh/config
       - name: check connection to server
         run: |
-          ssh -i ~/.ssh/key.pem ${{env.SERVER_USER}}@${{env.SERVER_HOST}}
+          ssh ${{env.SERVER_HOST}}
  
