@@ -13,7 +13,7 @@ env:
   POSTGRES_PORT: 5432
   NODE_ENV: ci
   SERVER_USER: rentngouat
-  SERVER_HOSTNAME: rentngo.marcoding.me
+  SERVER_DOMAIN: rentngo.marcoding.me
   SERVER_HOST: rentngo
 
 jobs:
@@ -50,7 +50,7 @@ jobs:
         run: |
           mkdir -p ~/.ssh   
           cd ~/.ssh
-          ssh-keyscan ${{env.SERVER_HOST}} >> ~/.ssh/known_hosts
+          ssh-keyscan ${{env.SERVER_DOMAIN}} >> ~/.ssh/known_hosts
       - name: setup ssh private key
         run: |
           cd ~/.ssh
@@ -60,7 +60,7 @@ jobs:
         run: |
           echo "
           Host ${{env.SERVER_HOST}}
-             Hostname ${{env.SERVER_HOSTNAME}}
+             Hostname ${{env.SERVER_DOMAIN}}
              User ${{env.SERVER_USER}}
              IdentityFile = ~/.ssh/key.pem
           " > ~/.ssh/config
