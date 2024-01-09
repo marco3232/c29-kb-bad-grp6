@@ -49,6 +49,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: install dependencies 
+        run: |
+          npm install 
       - name: build typescript project
         run: |
           c29-kb-bad-grp6
