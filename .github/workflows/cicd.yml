@@ -52,6 +52,6 @@ jobs:
          ssh-keyscan ${{env.SERVER_HOST}} >> ~/.ssh/known_hosts
          echo ${{secrets.SSH_PRIVATE_KEY}} > key.pem
          chmod 400 key.pem
-         ssh ${{env.SERVER_USER}}@${{env.SERVER_HOST}}
+         ssh -i key.pem ${{env.SERVER_USER}}@${{env.SERVER_HOST}}
 
  
