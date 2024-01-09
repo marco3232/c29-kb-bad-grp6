@@ -16,6 +16,7 @@ env:
   SERVER_DOMAIN: rentngo.marcoding.me
   SERVER_HOST: rentngo
   SERVER_DIR: ~/rentngo
+  pm2_NAME: rentngo
 
 jobs:
   test:
@@ -97,10 +98,34 @@ jobs:
       - name: upload to server
         run: |
           cd release
-          ls -l
           scp -r \
             package.json \
             dist \
             public \
             "${{env.SERVER_HOST}}:${{env.SERVER_DIR}}/"
+      - name: instsall dependencies on server
+        run: |
+          ssh ${{env.SERVER_HOST}} "
+            sp\ource ~/.nvm/nvm.sh
+            cd ${{env.SERVER_DIR}}
+            npm install --omit=dev
+          "
+      - name: Migrate database
+        run: |
+          ssh ${{env.SERVER_HOST}} "
+            sp\ource ~/.nvm/nvm.sh
+            cd ${{env.SERVER_DIR}}
+            cd .env dist/
+            cd dist
+            npx knex migrate:latest
+          "
+      - name: reload pm2 process
+        run: |
+          ssh ${{env.SERVER_HOST}} "
+            sp\ource ~/.nvm/nvm.sh
+            pm2 reload ${{env.PM2_NAME}}
+          "
+         
+
+      
  
