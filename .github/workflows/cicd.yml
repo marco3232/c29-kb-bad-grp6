@@ -53,7 +53,7 @@ jobs:
           npm install 
       - name: build typescript project
         run: |
-          /c29-kb-bad-grp6
+          cd /c29-kb-bad-grp6/
           npm run build
       - name: prepare archive built files
         run: |
