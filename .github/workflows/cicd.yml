@@ -43,19 +43,19 @@ jobs:
   deploy:
     if: github.ref_name == 'production'
     runs-on: ubuntu-latest
-    needs: test
+    # needs: test
     steps:
-     - name: add server fingerprint
-       run: |
-         mkdir -p ~/.ssh   
-         cd ~/.ssh
-         ssh-keyscan ${{env.SERVER_HOST}} >> ~/.ssh/known_hosts
-     - name: setup ssh private key
-       run: |
-         cd ~/.ssh
-         echo "${{secrets.SSH_PRIVATE_KEY}}" > key.pem
-         chmod 400 key.pem
-    - name: check connection to server
-      run: |
-        ssh -i ~/.ssh/key.pem ${{env.SERVER_USER}}@${{env.SERVER_HOST}}
+      - name: add server fingerprint
+        run: |
+          mkdir -p ~/.ssh   
+          cd ~/.ssh
+          ssh-keyscan ${{env.SERVER_HOST}} >> ~/.ssh/known_hosts
+      - name: setup ssh private key
+        run: |
+          cd ~/.ssh
+          echo "${{secrets.SSH_PRIVATE_KEY}}" > key.pem
+          chmod 400 key.pem
+      - name: check connection to server
+        run: |
+          ssh -i ~/.ssh/key.pem ${{env.SERVER_USER}}@${{env.SERVER_HOST}}
  
