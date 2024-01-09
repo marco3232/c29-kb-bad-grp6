@@ -96,7 +96,6 @@ jobs:
           path: release
       - name: upload to server
         run: |
-          release
           ls -l
           scp -r \
             package.json \
