@@ -116,7 +116,7 @@ jobs:
             cd ${{env.SERVER_DIR}}
             cd .env dist/
             cd dist
-            npx knex migrate:latest
+            npx knex migrate:down
           "
       - name: reload pm2 process
         run: |
