@@ -56,14 +56,13 @@ jobs:
           npm run build
       - name: prepare archive built files
         run: |
-          c29-kb-bad-grp6
           mkdir -p release
           mv package.json dist public release
       - name: upload release archive
         uses: actions/upload-artifact@v4
         with:
           name: release-archive
-          path: c29-kb-bad-grp6/release      
+          path: /release      
   deploy:
     if: github.ref_name == 'production'
     needs: build
@@ -94,10 +93,10 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: release-archive
-          path: c29-kb-bad-grp6/release
+          path: /release
       - name: upload to server
         run: |
-          c29-kb-bad-grp6/release
+          /release
           ls -l
           scp -r \
             package.json \
