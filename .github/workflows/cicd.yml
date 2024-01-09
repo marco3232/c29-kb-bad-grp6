@@ -43,8 +43,9 @@ jobs:
           npm test
   deploy:
     if: github.ref_name == 'production'
-    runs-on: ubuntu-latest
     # needs: test
+    runs-on: ubuntu-latest
+    container: node:20.10.0-slim
     steps:
       - name: add server fingerprint
         run: |
@@ -67,6 +68,7 @@ jobs:
       - name: check connection to server
         run: |
           ssh ${{env.SERVER_HOST}}
+      - uses: actions/checkout@v3
       - name: build deploy to server
         run: |
           ./scripts/deploy.sh
