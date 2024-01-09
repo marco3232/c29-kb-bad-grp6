@@ -12,6 +12,8 @@ env:
   POSTGRES_HOST: db_server
   POSTGRES_PORT: 5432
   NODE_ENV: ci
+  SERVER_USER: rentngo
+  SERVER_HOST: rentngo.marcoding.me
 
 jobs:
   test:
@@ -38,3 +40,18 @@ jobs:
       - name: run tests cases
         run: |
           npm test
+  deploy:
+    if: github.ref_name == 'production'
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+     - name: check connection to server
+       run: |
+         mkdir -p ~/.ssh   
+         cd ~/.ssh
+         ssh-keyscan ${{env.SERVER_HOST}} >> ~/.ssh/known_hosts
+         echo ${{secrets.SSH_PRIVATE_KEY}} > key.pem
+         chmod 400 key.pem
+         ssh ${{env.SERVER_USER}}@${{env.SERVER_HOST}}
+
+ 
