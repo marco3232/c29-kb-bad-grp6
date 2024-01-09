@@ -106,7 +106,7 @@ jobs:
       - name: instsall dependencies on server
         run: |
           ssh ${{env.SERVER_HOST}} "
-            sp\ource ~/.nvm/nvm.sh
+            source ~/.nvm/nvm.sh
             cd ${{env.SERVER_DIR}}
             npm install --omit=dev 
           "
@@ -122,7 +122,7 @@ jobs:
       - name: reload pm2 process
         run: |
           ssh ${{env.SERVER_HOST}} "
-            sp\ource ~/.nvm/nvm.sh
+            source ~/.nvm/nvm.sh
             pm2 reload ${{env.PM2_NAME}}
           "
          
