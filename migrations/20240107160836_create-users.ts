@@ -7,7 +7,11 @@ export async function up(knex: Knex): Promise<void> {
     table.string("password",2048).notNullable;
     table.specificType("tel", "char(8)").unique();
     table.timestamps(false, true);
+    table.string("id_card",10).unique()
+    table.string("driving_license",10).unique()
   });
+
+
 }
 
 export async function down(knex: Knex): Promise<void> {
