@@ -1,42 +1,47 @@
-import express, { ErrorRequestHandler, Request, Response } from "express";
+import express, { Request, Response } from "express";
 import { print } from "listening-on";
 import { createKnex } from "./db";
-// import { RequestLog } from './types'
 import { HttpError } from "./http.error";
+import { errorHandler } from "./errorHandler";
 import { env } from "./env";
 import { userRoutes } from "./user.routes";
+import { sessionMiddleware } from "./session";
+// import { RequestLog } from './types'
 
 let knex = createKnex()
 let app = express();
 
-app.use(express.static("public"));
+app.use(sessionMiddleware);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(userRoutes);
 
+//ADD 
+import { UserService } from "./user.service";
+import { UserController } from "./user.controller";
+const userService = new UserService(knex);
+export const userController = new UserController(userService);
+
+import { userRoute } from "./route/userRoute";
+
+
+app.use(userRoute);
+//ADD
 app.get("/hi", (req: Request, res: Response) => {
   res.send("im hihi");
 });
 
+app.use(express.static("public"));
 app.use((req, res, next) =>
-  next(
-    new HttpError(
-      404,
+next(
+  new HttpError(
+    404,
       `route not found, method: ${req.method}, url: ${req.url}`
     )
   )
 );
 
-let errorHandler: ErrorRequestHandler = (err: HttpError, req, res, next) => {
-  if (!err.statusCode) console.error(err);
-  res.status(err.statusCode || 500);
-  let error = String(err).replace(/^(\w*)Error: /, "");
-  if (req.headers.accept?.includes("application/json")) {
-    res.json({ error });
-  } else {
-    res.end(error);
-  }
-};
+//moving errorHandler
 app.use(errorHandler);
 
 let port = env.PORT;
