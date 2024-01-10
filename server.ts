@@ -5,6 +5,7 @@ import { createKnex } from "./db";
 import { HttpError } from "./http.error";
 import { env } from "./env";
 import { userRoutes } from "./user.routes";
+import { UserController } from "./user.controller";
 
 let knex = createKnex()
 let app = express();
@@ -12,7 +13,9 @@ let app = express();
 app.use(express.static("public"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(userRoutes);
+
+let userService = new UserService(knex)
+app.use(new UserController().router);
 
 app.get("/hi", (req: Request, res: Response) => {
   res.send("im hihi");
