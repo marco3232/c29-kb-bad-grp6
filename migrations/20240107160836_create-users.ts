@@ -10,8 +10,6 @@ export async function up(knex: Knex): Promise<void> {
     table.string("id_card",10).unique()
     table.string("driving_license",10).unique()
   });
-
-
 }
 
 export async function down(knex: Knex): Promise<void> {
