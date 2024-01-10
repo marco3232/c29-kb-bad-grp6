@@ -8,7 +8,7 @@ function loadEnv() {
       NODE_ENV : "development",
     }
     populateEnv(env, { mode: 'halt'})
-    console.log("check env",env)
+    // console.log("check env",env)
     switch(env.NODE_ENV) {
       case 'test' : {
         const env = {
@@ -41,7 +41,7 @@ function loadEnv() {
           POSTGRES_PORT: 5432,
         }
       populateEnv(env, { mode: 'halt' })
-      console.log("check2",env)
+      // console.log("check2",env)
       return {
         ...env,
         DB_HOST:env.POSTGRES_HOST,
@@ -63,7 +63,7 @@ function loadEnv() {
           DB_PASSWORD: '',
         }
       populateEnv(env, { mode: 'halt' })
-      console.log("check env",env)
+      // console.log("check env",env)
       return env
       }
 
