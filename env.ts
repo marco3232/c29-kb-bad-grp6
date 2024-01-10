@@ -19,6 +19,7 @@ function loadEnv() {
           TEST_DB_NAME: '',
           TEST_DB_USERNAME: '',
           TEST_DB_PASSWORD: '',
+          SESSION_SECRET: '',
         }
       populateEnv(env, { mode: 'halt' })
       return {
@@ -39,6 +40,7 @@ function loadEnv() {
           POSTGRES_PASSWORD: '',
           POSTGRES_HOST: '',
           POSTGRES_PORT: 5432,
+          SESSION_SECRET: '',
         }
       populateEnv(env, { mode: 'halt' })
       // console.log("check2",env)
@@ -61,6 +63,7 @@ function loadEnv() {
           DB_NAME: '',
           DB_USERNAME: '',
           DB_PASSWORD: '',
+          SESSION_SECRET: '',
         }
       populateEnv(env, { mode: 'halt' })
       // console.log("check env",env)
