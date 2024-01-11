@@ -44,4 +44,36 @@ export class UserController {
       next(error);
     }
   };
+
+  register = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      let { email, password, tel } = req.body;
+      console.log("controller reg",req.method);
+
+      if (!email) throw new HttpError(400, " missing email");
+      if (typeof email !== "string")
+        throw new HttpError(400, "invalid email, expect string");
+
+      if (!password) throw new HttpError(400, "missing password");
+      if (typeof password !== "string")
+        throw new HttpError(400, "invalid password, expect string");
+
+        let json = await this.userService.register({email,password, tel})
+        console.log('check json',json)
+
+      res.json(json);
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  async getSession(req: Request, res: Response) {
+    if (!req.session["email"])
+      throw new HttpError(401, "this API is only for authenticated users");
+    else res.json({ email: req.session["email"] });
+  }
+
+  async getPublicProfile(req: Request) {
+    throw new HttpError(501, "not implemented");
+  }
 }
