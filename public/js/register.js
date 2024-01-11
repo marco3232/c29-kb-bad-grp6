@@ -5,7 +5,7 @@ document.querySelector("#email").addEventListener("focus", function (e) {
     targets: "path",
     strokeDashoffset: {
       value: 0,
-      duration: 700,
+      duration: 2000,
       easing: "easeOutQuart",
     },
     strokeDasharray: {
@@ -21,7 +21,7 @@ document.querySelector("#password").addEventListener("focus", function (e) {
     targets: "path",
     strokeDashoffset: {
       value: -336,
-      duration: 700,
+      duration: 2000,
       easing: "easeOutQuart",
     },
     strokeDasharray: {
@@ -31,33 +31,51 @@ document.querySelector("#password").addEventListener("focus", function (e) {
     },
   });
 });
+
+document.querySelector("#tel").addEventListener("focus", function (e) {
+  if (current) current.pause();
+  current = anime({
+    targets: "path",
+    strokeDashoffset: {
+      value: -660 ,
+      duration: 2000,
+      easing: "easeOutQuart",
+    },
+    strokeDasharray: {
+      value: "240 1386",
+      duration: 700,
+      easing: "easeOutQuart",
+    },
+  });
+});
+
 // document.querySelector("#submit").addEventListener("focus", function (e) {
 //   if (current) current.pause();
 //   current = anime({
 //     targets: "path",
 //     strokeDashoffset: {
-//       value: -730,
+//       value: -800,
 //       duration: 700,
 //       easing: "easeOutQuart",
 //     },
 //     strokeDasharray: {
-//       value: "530 1386",
+//       value: "540 1386",
 //       duration: 700,
 //       easing: "easeOutQuart",
 //     },
 //   });
 // });
 
-console.log("Wellcome to login js");
+console.log("Wellcome to register js");
 
 function overrideLoginDefaultAction() {
-  let target = document.querySelector("#login-form");
+  let target = document.querySelector("#regis-form");
 
   target.addEventListener("submit", async (e) => {
-    console.log("login submit triggered");
+    console.log("register submit triggered");
     e.preventDefault();
 
-    const res = await fetch("/user/login", {
+    const res = await fetch("/user/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -65,19 +83,22 @@ function overrideLoginDefaultAction() {
       body: JSON.stringify({
         email: target.email.value,
         password: target.password.value,
+        tel: target.tel.value,
       }),
     });
+    console.log("HTel",res)
+    // console.log("HEHEHEHEEH",res.body)
 
     if (res.status == 200) {
       const result = await res.json();
-      console.log(result);
+      console.log("seeeeeeeeeee",result);
 
-      window.location.href = "index.html";
+      window.location.href = "login.html";
     } else {
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "Login Failed",
+        text: "[Registration Failed]Email already exist!!!",
       });
     }
   });
