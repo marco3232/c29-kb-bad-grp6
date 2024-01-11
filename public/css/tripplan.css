@@ -1,0 +1,35 @@
+/* .first {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 0px;
+} */
+body{
+  font-size: 50px;
+}
+.navbar {
+    background: #ff8b06 !important;
+    color: aliceblue;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 35px;
+  }
+  .navbar-brand {
+    font-size: 45px;
+    font-weight: bold;
+    color: #212c64 !important;
+  }
+  
+  .user {
+    margin-right: 10em;
+    display: flex;
+    justify-content:center;
+    flex-wrap: wrap;
+  }
+  .user-icon {
+    display: flex;
+    justify-self: end;
+    margin-right: 20px;
+   
+  }
+  
+  
