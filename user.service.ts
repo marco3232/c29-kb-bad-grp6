@@ -1,6 +1,6 @@
 import { Knex } from "knex";
 import { HttpError } from "./http.error";
-import { comparePassword } from "./hash";
+import { comparePassword, hashPassword } from "./hash";
 
 
 export class UserService {

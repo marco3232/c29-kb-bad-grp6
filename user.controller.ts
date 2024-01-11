@@ -2,13 +2,12 @@ import { NextFunction, Request, Response } from "express";
 import { HttpError } from "./http.error";
 import { UserService } from "./user.service";
 
-
 declare module "express-session" {
   interface SessionData {
-      id: number;
-      email?: string;
-    }
+    id: number;
+    email?: string;
   }
+}
 
 export class UserController {
   private userService: UserService;
@@ -45,14 +44,4 @@ export class UserController {
       next(error);
     }
   };
-
-  async getSession(req: Request, res: Response) {
-    if (!req.session["email"])
-      throw new HttpError(401, "this API is only for authenticated users");
-    else res.json({ email: req.session["email"] });
-  }
-
-  async getPublicProfile(req: Request) {
-    throw new HttpError(501, "not implemented");
-  }
 }
