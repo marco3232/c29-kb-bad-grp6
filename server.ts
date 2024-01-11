@@ -4,13 +4,9 @@ import { createKnex } from "./db";
 import { HttpError } from "./http.error";
 import { errorHandler } from "./errorHandler";
 import { env } from "./env";
-import { userRoutes } from "./user.routes";
-<<<<<<< HEAD
-import { UserController } from "./user.controller";
-=======
+// import { userRoutes } from "./user.routes";
 import { sessionMiddleware } from "./session";
 // import { RequestLog } from './types'
->>>>>>> aeff453436e29e18a93b444fe9464d15ebdebd0c
 
 let knex = createKnex()
 let app = express();
@@ -19,8 +15,7 @@ app.use(sessionMiddleware);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-let userService = new UserService(knex)
-app.use(new UserController().router);
+
 
 //ADD 
 import { UserService } from "./user.service";
