@@ -2,13 +2,12 @@ import { NextFunction, Request, Response } from "express";
 import { HttpError } from "./http.error";
 import { UserService } from "./user.service";
 
-
 declare module "express-session" {
   interface SessionData {
-      id: number;
-      email?: string;
-    }
+    id: number;
+    email?: string;
   }
+}
 
 export class UserController {
   private userService: UserService;
@@ -39,6 +38,28 @@ export class UserController {
         username: req.body.email,
       };
       req.session.save();
+
+      res.json(json);
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  register = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      let { email, password, tel } = req.body;
+      console.log("controller reg",req.method);
+
+      if (!email) throw new HttpError(400, " missing email");
+      if (typeof email !== "string")
+        throw new HttpError(400, "invalid email, expect string");
+
+      if (!password) throw new HttpError(400, "missing password");
+      if (typeof password !== "string")
+        throw new HttpError(400, "invalid password, expect string");
+
+        let json = await this.userService.register({email,password, tel})
+        console.log('check json',json)
 
       res.json(json);
     } catch (error) {
