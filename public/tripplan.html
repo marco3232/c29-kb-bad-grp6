@@ -28,7 +28,7 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
     />
 
-    <link rel="stylesheet" href="./css/index.css" />
+    <link rel="stylesheet" href="./css/tripplan.css" />
   </head>
   <body>
     <div class="first container-fluid">
@@ -66,18 +66,54 @@
               </li>
             </ul>
             <div class="user">
-              <a class="bi bi-person-fill user-icon" href="login.html" role="button">Login</i>
-              
+              <i class="bi bi-person-fill user-icon">Login</i>
 
-              <a class="bi bi-key user-icon" href="register.html" role="button">Registerrrrrrrrr</i>
-
+              <i class="bi bi-key user-icon">Registerrrrrrrrr</i>
             </div>
           </div>
         </div>
       </nav>
     </div>
-    <div class="second"></div>
-    <script src="./js/index.js"></script>
-    <script src="./js/all.js"></script>
+    <div class="second">
+      <form id="tripplan" action="#">
+        <label for="numberOfRenters">租車人數:</label>
+        <select class="peopleSelectbox" name="numberOfRenters">
+          <option value="2人" name="peopletwo">2人</option>
+          <option value="3人" name="peoplethree">3人</option>
+          <option value="4人" name="peoplefour">4人</option>
+          <option value="5人" name="peoplefive">5人</option>
+          <option value="6人" name="peoplesix">6人</option>
+          <option value="7人" name="peopleseven">7人</option>
+        </select>
+        <label for="relationship">關係:</label>
+        <select class="relationshop-selectbox" name="relationship">
+          <option value="朋友" name="friend">朋友</option>
+          <option value="情侶" name="couple">情侶</option>
+          <option value="夫婦" name="marriedCouple">夫婦</option>
+          <option value="家庭" name="family">家庭</option>
+        </select>
+        <label for="rentalDays">租車日數</label>
+        <select class="rental-days-selectbox" name="rentalDays">
+          <option value="1日" name="onedays">1日</option>
+          <option value="3日" name="threedays">3日</option>
+          <option value="5日" name="fivedays">5日</option>
+        </select>
+        <label for="ageRange">年齡層</label>
+        <select class="age-selectbox" name="ageRange">
+          <option value="20-30" name="twentytothirty">20-30</option>
+          <option value="30-40" name="thritytofourty">30-40</option>
+          <option value="40-50" name="fourtytofifty">40-50</option>
+        </select>
+        <label for="rentalPurpose">目的</label>
+        <select class="age-selectbox" name="rentalPurpose">
+          <option value="郊遊" name="outing">郊遊</option>
+          <option value="攝影" name="photoshoot">攝影</option>
+          <option value="遊覽香港" name="hongkong">遊覽香港</option>
+        </select>
+        <br /><br />
+        <input type="submit" value="撳我建議最佳自駕遊路線&#129322;" />
+      </form>
+    </div>
+    <script src="./js/tripplan.js"></script>
   </body>
 </html>

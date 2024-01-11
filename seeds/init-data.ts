@@ -2,7 +2,7 @@ import { Knex } from "knex";
 import { hashPassword } from "../hash";
 import { seedData } from "../genericSeed";
 
-export async function seed(knex: Knex) {
+export async function seed(knex: Knex): Promise<void> {
   let dummyUser: { email: string; password_hash: string } = {
     email: "test@gmail.com",
     password_hash: "1234",

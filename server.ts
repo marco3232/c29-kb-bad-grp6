@@ -32,6 +32,11 @@ app.get("/hi", (req: Request, res: Response) => {
   res.send("im hihi");
 });
 
+app.post("/tripplan",(req:Request,res:Response)=>{
+  const{numberOfRenters,relationship,ageRange,rentalDays,rentalPurpose} = req.body
+  console.log("imreqbody",req.body)
+})
+
 app.use(express.static("public"));
 app.use((req, res, next) =>
 next(
