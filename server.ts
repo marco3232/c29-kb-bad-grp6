@@ -1,4 +1,4 @@
-import express, { Request, Response } from "express";
+import express, { Request, Response, response } from "express";
 import { print } from "listening-on";
 import { createKnex } from "./db";
 import { HttpError } from "./http.error";
@@ -7,17 +7,16 @@ import { env } from "./env";
 // import { userRoutes } from "./user.routes";
 import { sessionMiddleware } from "./session";
 // import { RequestLog } from './types'
+var request = require("request-promise");
 
-let knex = createKnex()
+let knex = createKnex();
 let app = express();
 
 app.use(sessionMiddleware);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-
-
-//ADD 
+//ADD
 import { UserService } from "./user.service";
 import { UserController } from "./user.controller";
 const userService = new UserService(knex);
@@ -25,23 +24,52 @@ export const userController = new UserController(userService);
 
 import { userRoute } from "./route/userRoute";
 
-
 app.use(userRoute);
 //ADD
 app.get("/hi", (req: Request, res: Response) => {
   res.send("im hihi");
 });
 
-app.post("/tripplan",(req:Request,res:Response)=>{
-  const{numberOfRenters,relationship,ageRange,rentalDays,rentalPurpose} = req.body
-  console.log("im server json",req.body)
-})
+app.post("/tripplan", (req: Request, res: Response) => {
+  const { numberOfRenters, relationship, ageRange, rentalDays, rentalPurpose } =
+    req.body;
+  console.log("imreqbody", req.body);
+
+  const pythonServer = "http://127.0.0.1:5000/tripplan";
+
+  fetch(pythonServer, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      numberOfRenters,
+      relationship,
+      ageRange,
+      rentalDays,
+      rentalPurpose,
+    }),
+  })
+  .then((response) => {
+    console.log("Raw response from Python server:", response);
+    return response.json();
+  })
+  .then((data) => {
+    // Process the data from the Python server
+    console.log('Data from Python server:', data);
+    res.json({ success: true, message: "Data sent to Python server successfully" });
+  })
+  .catch((error) => {
+    console.error("Error sending data to Python server:", error.message);
+    res.status(500).json({ success: false, message: "Internal server error" });
+  });
+});
 
 app.use(express.static("public"));
 app.use((req, res, next) =>
-next(
-  new HttpError(
-    404,
+  next(
+    new HttpError(
+      404,
       `route not found, method: ${req.method}, url: ${req.url}`
     )
   )
