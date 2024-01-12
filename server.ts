@@ -30,7 +30,7 @@ app.get("/hi", (req: Request, res: Response) => {
   res.send("im hihi");
 });
 
-app.post("/tripplan", (req: Request, res: Response) => {
+app.post("/tripplan", async(req: Request, res: Response) => {
   const { numberOfRenters, relationship, ageRange, rentalDays, rentalPurpose } =
     req.body;
   console.log("imreqbody", req.body);
@@ -50,19 +50,27 @@ app.post("/tripplan", (req: Request, res: Response) => {
       rentalPurpose,
     }),
   })
-  .then((response) => {
-    console.log("Raw response from Python server:", response);
-    return response.json();
-  })
-  .then((data) => {
-    // Process the data from the Python server
-    console.log('Data from Python server:', data);
-    res.json({ success: true, message: "Data sent to Python server successfully" });
-  })
-  .catch((error) => {
-    console.error("Error sending data to Python server:", error.message);
-    res.status(500).json({ success: false, message: "Internal server error" });
-  });
+    .then((response) => {
+      console.log("Raw response from Python server:", response);
+      return  response.json();
+    })
+    .then(async(data) => {
+      // Process the data from the Python server
+      console.log("Data from Python server:", data);
+      res.json({
+        success: true,
+        message: "Data sent to Python server successfully",
+      });
+      // Insert the data into the "tripplans" table
+      await knex("tripplans").insert({ description: data.description });
+      console.log("insert??",data.description)
+    })
+    .catch((error) => {
+      console.error("Error sending data to Python server:", error.message);
+      res
+        .status(500)
+        .json({ success: false, message: "Internal server error" });
+    });
 });
 
 app.use(express.static("public"));

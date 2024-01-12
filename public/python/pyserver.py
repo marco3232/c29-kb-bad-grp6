@@ -45,7 +45,7 @@ def postdata():
 
     # Call OpenAI API with the dynamic prompt
     response = client.chat.completions.create(
-        model='gpt-4',
+        model='gpt-3.5-turbo',
         messages=[
             {"role": "user", "content": prompt}
         ]
@@ -53,9 +53,10 @@ def postdata():
 
     # Extract and print the GPT-3.5-turbo response
     gpt_response = response.choices[0].message.content
-    print("GPT-3.5-turbo response:", gpt_response)
+    # print("GPT-3.5-turbo response:", gpt_response)
+    print("GPT-3.5-turbo response:", jsonify(gpt_response))
 
-    return jsonify({"result": gpt_response})
+    return gpt_response
 
 
 if __name__ == "__main__":
