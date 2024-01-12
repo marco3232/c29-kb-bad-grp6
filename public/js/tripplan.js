@@ -1,4 +1,6 @@
+
 console.log("tripplan")
+
 
 document
   .querySelector("#tripplan")
@@ -26,6 +28,8 @@ document
     console.log("RES",res)
     // const result = await res.json()
     // document.querySelector('#contact-result').textContent = result.error
+    
+
   });
 
   
