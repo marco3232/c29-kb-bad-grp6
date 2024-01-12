@@ -32,18 +32,13 @@ def postdata():
 以下是一個輸出例子的參考格式：
 
 {{
-"route_suggestions": [
-{{
 "name": "太平山頂",
-"description": "探訪香港太平山頂，這裡是欣賞香港城市美景的最佳之地。搭乘纜車前往山頂，您將沿途欣賞到壯觀的景色。山頂上設有觀景台和多家餐廳，讓您可以一邊品嚐美食，一邊欣賞香港全景。此外，不妨參訪香港天文台，深入了解香港的氣象知識。",
-"parking_facility": {{
+"description": "探訪香港太平山頂，這裡是欣賞香港城市美景的最佳之地。搭乘纜車前往山頂，您將沿途欣賞到壯觀的景色。山頂上設有觀景台和多家餐廳，讓您可以一邊品嚐美食，一邊欣賞香港全景。此外，不妨參訪香港天文台，深入了解香港的氣象知識。", 
 "carpark_name": "太平山頂停車場",
 "carpark_link": "https://www.google.com/maps/search/太平山頂停車場",
 "capacity": "約200個停車位"
-}}
 }},
-]
-}}"""
+"""
 
     # Add user input to the prompt
     prompt += f'\n{data["numberOfRenters"]} {data["relationship"]} {data["ageRange"]} {data["rentalDays"]} {data["rentalPurpose"]}'
