@@ -62,8 +62,14 @@ app.post("/tripplan", async(req: Request, res: Response) => {
         message: "Data sent to Python server successfully",
       });
       // Insert the data into the "tripplans" table
-      await knex("tripplans").insert({ description: data.description });
-      console.log("insert??",data.description)
+      await knex("tripplans").insert({
+        name: data.name,
+        description: data.description,
+        carparkname: data.carparkname,
+        carparklink: data.carparklink,
+        capacity: data.capacity
+         });
+      // console.log("insert??",data.description)
     })
     .catch((error) => {
       console.error("Error sending data to Python server:", error.message);
