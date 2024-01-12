@@ -59,6 +59,9 @@ app.post("/tripplan", (req: Request, res: Response) => {
     console.log('Data from Python server:', data);
     res.json({ success: true, message: "Data sent to Python server successfully" });
   })
+  .then((data)=>{
+    knex("")
+  })
   .catch((error) => {
     console.error("Error sending data to Python server:", error.message);
     res.status(500).json({ success: false, message: "Internal server error" });
