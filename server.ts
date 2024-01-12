@@ -34,7 +34,7 @@ app.get("/hi", (req: Request, res: Response) => {
 
 app.post("/tripplan",(req:Request,res:Response)=>{
   const{numberOfRenters,relationship,ageRange,rentalDays,rentalPurpose} = req.body
-  console.log("imreqbody",req.body)
+  console.log("im server json",req.body)
 })
 
 app.use(express.static("public"));
