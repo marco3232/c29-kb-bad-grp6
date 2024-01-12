@@ -50,7 +50,7 @@ app.post("/tripplan", async(req: Request, res: Response) => {
       rentalPurpose,
     }),
   })
-    .then((response) => {
+    .then(async(response) => {
       console.log("Raw response from Python server:", response);
       return  response.json();
     })
@@ -62,13 +62,32 @@ app.post("/tripplan", async(req: Request, res: Response) => {
         message: "Data sent to Python server successfully",
       });
       // Insert the data into the "tripplans" table
-      await knex("tripplans").insert({
-        name: data.name,
-        description: data.description,
-        carparkname: data.carparkname,
-        carparklink: data.carparklink,
-        capacity: data.capacity
-         });
+
+      for (let item of data) {
+        await knex("tripplans").insert({
+            name: item.name,
+            description: item.description,
+            carparkname: item.carpark_name,
+            carparklink: item.carpark_link,
+            capacity: item.capacity
+             });
+
+      }
+        
+        
+      // const tripPlansForInsert = data.map((tripPlan:any) => ({
+      //   name: tripPlan.name,
+      //   description: tripPlan.description,
+      //   carpark_name: tripPlan.carpark_name,
+      //   carpark_link: tripPlan.carpark_link,
+      //   capacity: tripPlan.capacity,
+      // }));
+  
+      // // Batch insert all trip plans into the "tripplans" table
+      // await knex.batchInsert("tripplans", tripPlansForInsert);
+  
+
+
       // console.log("insert??",data.description)
     })
     .catch((error) => {
