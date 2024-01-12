@@ -42,7 +42,7 @@ function loadEnv() {
           POSTGRES_PASSWORD: '',
           POSTGRES_HOST: '',
           POSTGRES_PORT: 5432,
-          SESSION_SECRET: '',
+          SESSION_SECRET: 'jodsjgklsgd',
         }
       populateEnv(env, { mode: 'halt' })
       // console.log("check2",env)
