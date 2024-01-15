@@ -23,6 +23,12 @@
    
   } 
 
+
+  #loading{
+    display: none;
+  }
+
+
   .bodycontent{
     display: flex;
     flex-wrap: wrap;
