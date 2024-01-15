@@ -188,6 +188,7 @@ $RECYCLE.BIN/
 # python
 .venv
 tf_python
+.pyenv
 
 # jest
 

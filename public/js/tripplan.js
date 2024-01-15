@@ -1,4 +1,6 @@
+
 console.log("tripplan")
+
 
 document
   .querySelector("#tripplan")
@@ -23,9 +25,11 @@ document
       body: JSON.stringify(formObject),
 
     })
-    console.log("RES",res)
+    console.log("im frontend",res)
     // const result = await res.json()
     // document.querySelector('#contact-result').textContent = result.error
+    
+
   });
 
   
