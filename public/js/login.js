@@ -5,7 +5,7 @@ document.querySelector("#email").addEventListener("focus", function (e) {
     targets: "path",
     strokeDashoffset: {
       value: 0,
-      duration: 700,
+      duration: 2000, //spd
       easing: "easeOutQuart",
     },
     strokeDasharray: {
@@ -21,7 +21,7 @@ document.querySelector("#password").addEventListener("focus", function (e) {
     targets: "path",
     strokeDashoffset: {
       value: -336,
-      duration: 700,
+      duration: 2000,
       easing: "easeOutQuart",
     },
     strokeDasharray: {
@@ -71,8 +71,13 @@ function overrideLoginDefaultAction() {
     if (res.status == 200) {
       const result = await res.json();
       console.log(result);
+      Swal.fire({
+        title: "Good job!",
+        text: "Login success!",
+        icon: "success",
+      });
 
-      window.location.href = "index.html";
+      setTimeout(()=>window.location.href = "./index.html", 2000);
     } else {
       Swal.fire({
         icon: "error",

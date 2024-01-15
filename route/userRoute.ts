@@ -1,7 +1,10 @@
-import { Router } from "express";
+import { NextFunction, Request, Response, Router } from "express";
 import { userController } from "../server";
+import { isLoggedIn } from "../middleware";
 export const userRoute = Router();
 
-userRoute.post("/user/login", userController.login);
 userRoute.post("/user/register", userController.register);
-userRoute.get("/user/session", userController.getSession);//waiting
+userRoute.post("/user/login", userController.login);
+userRoute.get("/user/email", userController.getUserEmail);
+userRoute.get("/user/userid", isLoggedIn, userController.getUserId);
+userRoute.get("/user/logout", isLoggedIn, userController.logout);

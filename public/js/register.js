@@ -5,7 +5,7 @@ document.querySelector("#email").addEventListener("focus", function (e) {
     targets: "path",
     strokeDashoffset: {
       value: 0,
-      duration: 2000,
+      duration: 2000, //spd
       easing: "easeOutQuart",
     },
     strokeDasharray: {
@@ -37,7 +37,7 @@ document.querySelector("#tel").addEventListener("focus", function (e) {
   current = anime({
     targets: "path",
     strokeDashoffset: {
-      value: -660 ,
+      value: -642,
       duration: 2000,
       easing: "easeOutQuart",
     },
@@ -86,14 +86,18 @@ function overrideLoginDefaultAction() {
         tel: target.tel.value,
       }),
     });
-    console.log("HTel",res)
-    // console.log("HEHEHEHEEH",res.body)
+    console.log("HTel", target.tel.value);
 
     if (res.status == 200) {
       const result = await res.json();
-      console.log("seeeeeeeeeee",result);
+      console.log("seeeeeeeeeee", result);
 
-      window.location.href = "login.html";
+      Swal.fire({
+        title: "Good job!",
+        text: "Registration success,Login Now!!!",
+        icon: "success",
+      });
+      setTimeout(()=>window.location.href = "login.html", 2000)
     } else {
       Swal.fire({
         icon: "error",
