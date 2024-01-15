@@ -5,6 +5,16 @@
     padding: 0px;
 } */
 
+body {
+
+  background-image: url('../assests/1.carRent.png');
+}
+
+#first {
+  padding-right:  0px;
+  padding-left: 0px;
+}
+
 .navbar {
   background: #ff8b06 !important;
   color: aliceblue;
@@ -31,36 +41,65 @@
   text-decoration:none;
 }
 
-.email-font {
-  display: inline-flex;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  color: #fee440;
-  background-color: rgb(13, 14, 14);
-  border: solid white;
-  border-radius: 20px;
-  
-}
-.id-font {
-  display: inline-flex;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  color: #fee440;
-  background-color: rgb(13, 14, 14);
-  border: solid white;
-}
-.center-button{
-  align-self: center;
-  font-size:18px;
-}
-.icon-color{
-  color:#ffffff;
-  margin-right:10px;
-}
-.button-text{
-  color:#ffffff;
-}
-
-/* @media screen and (min-width: 1100px) {
-  .user-icon {
-    color:gold;
+  .login-and-create-acc {
+    display: flex;
+    align-items: center;
+    color: #212c64;
   }
-} */
+
+  #username-display {
+    margin-right: 10px;
+  }
+
+  .user {
+    margin-right: 10em;
+    display: flex;
+    justify-content:center;
+    flex-wrap: wrap;
+  }
+  .user-icon {
+    display: flex;
+    /* justify-self: end; */
+    align-self: center;
+    margin-right: 20px;
+    text-decoration:none;
+  }
+  
+  .email-font {
+    display: inline-flex;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #fee440;
+    background-color: rgb(13, 14, 14);
+    border: solid white;
+    border-radius: 20px;
+    
+  }
+  .id-font {
+    display: inline-flex;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #fee440;
+    background-color: rgb(13, 14, 14);
+    border: solid white;
+  }
+  .center-button{
+    align-self: center;
+    font-size:18px;
+  }
+  .icon-color{
+    color:#ffffff;
+    margin-right:10px;
+  }
+  .button-text{
+    color:#ffffff;
+  }
+
+  /* .fill{
+
+  } */
+
+
+
+  /* .container-fluid{
+    padding-right: 0px;
+    padding-left: 0px;
+  } */

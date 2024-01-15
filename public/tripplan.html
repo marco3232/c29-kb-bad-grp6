@@ -31,73 +31,56 @@
     <link rel="stylesheet" href="./css/tripplan.css" />
   </head>
   <body>
-    <div class="first container-fluid">
-      <!-- narbar -->
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="index2.html">Rent n go</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-              <!-- <a class="nav-link active" aria-current="page" href="#">Home</a> -->
-              <a class="nav-link" href="./tripplan.html">Trip Plan</a>
-              <a class="nav-link" href="./pricing.html">Pricing</a>
-              <a class="nav-link" href="./car.html">Cars</a>
-            </div>
-          </div>
-        </div>
-         <!-- login & register -->
-      
+    <div class="first container-fluid" id="first"></div>
+    <div id="id-display"></div>
+    <div class="bodycontent">
+      <form class="box" id="tripplan" >
+        <label for="numberOfRenters">租車人數:</label>
+        <select id="box" class="peopleSelectbox" name="numberOfRenters">
+          <option value="2人" name="peopletwo">2人</option>
+          <option value="3人" name="peoplethree">3人</option>
+          <option value="4人" name="peoplefour">4人</option>
+          <option value="5人" name="peoplefive">5人</option>
+          <option value="6人" name="peoplesix">6人</option>
+          <option value="7人" name="peopleseven">7人</option>
+        </select>
+        <label for="relationship">關係:</label>
+        <select class="relationshop-selectbox" name="relationship">
+          <option value="朋友" name="friend">朋友</option>
+          <option value="情侶" name="couple">情侶</option>
+          <option value="夫婦" name="marriedCouple">夫婦</option>
+          <option value="家庭" name="family">家庭</option>
+        </select>
+        <label for="rentalDays">租車日數</label>
+        <select class="rental-days-selectbox" name="rentalDays">
+          <option value="1日" name="onedays">1日</option>
+          <option value="3日" name="threedays">3日</option>
+          <option value="5日" name="fivedays">5日</option>
+        </select>
+        <label for="ageRange">年齡層</label>
+        <select class="age-selectbox" name="ageRange">
+          <option value="20-30" name="twentytothirty">20-30</option>
+          <option value="30-40" name="thritytofourty">30-40</option>
+          <option value="40-50" name="fourtytofifty">40-50</option>
+        </select>
+        <label for="rentalPurpose">目的</label>
+        <select class="age-selectbox" name="rentalPurpose">
+          <option value="郊遊" name="outing">郊遊</option>
+          <option value="攝影" name="photoshoot">攝影</option>
+          <option value="遊覽香港" name="hongkong">遊覽香港</option>
+        </select>
+        <br /><br />
+        <input type="submit" value="撳我建議最佳自駕遊路線&#129322;" onclick="loading()" /> 
 
-         <!-- login & register end -->
-      </nav>
-      <!-- navbar end -->
-      
-      <div class="bodycontent">
-        <form class="box" id="tripplan" action="#">
-            <label for="numberOfRenters">租車人數:</label>
-            <select id="box" class="peopleSelectbox" name="numberOfRenters">
-              <option value="2人" name="peopletwo">2人</option>
-              <option value="3人" name="peoplethree">3人</option>
-              <option value="4人" name="peoplefour">4人</option>
-              <option value="5人" name="peoplefive">5人</option>
-              <option value="6人" name="peoplesix">6人</option>
-              <option value="7人" name="peopleseven">7人</option>
-            </select>
-            <label for="relationship">關係:</label>
-            <select class="relationshop-selectbox" name="relationship">
-              <option value="朋友" name="friend">朋友</option>
-              <option value="情侶" name="couple">情侶</option>
-              <option value="夫婦" name="marriedCouple">夫婦</option>
-              <option value="家庭" name="family">家庭</option>
-            </select>
-            <label for="rentalDays">租車日數</label>
-            <select class="rental-days-selectbox" name="rentalDays">
-              <option value="1日" name="onedays">1日</option>
-              <option value="3日" name="threedays">3日</option>
-              <option value="5日" name="fivedays">5日</option>
-            </select>
-            <label for="ageRange">年齡層</label>
-            <select class="age-selectbox" name="ageRange">
-              <option value="20-30" name="twentytothirty">20-30</option>
-              <option value="30-40" name="thritytofourty">30-40</option>
-              <option value="40-50" name="fourtytofifty">40-50</option>
-            </select>
-            <label for="rentalPurpose">目的</label>
-            <select class="age-selectbox" name="rentalPurpose">
-              <option value="郊遊" name="outing">郊遊</option>
-              <option value="攝影" name="photoshoot">攝影</option>
-              <option value="遊覽香港" name="hongkong">遊覽香港</option>
-            </select>
-            <br /><br />
-            <input type="submit" value="撳我建議最佳自駕遊路線&#129322;" />
-          </form>
-      </div>
-      
+            <div id="loading">
+              <img src="./assests/loading.gif" alt="Loading..." >
+      </form>
     </div>
-</details>
-<script src="./js/tripplan.js"></script>
-</body>
+
+    
+    
+    <script src="./js/tripplan.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="./js/all.js"></script>
+  </body>
 </html>

@@ -1,21 +1,31 @@
-/* .first {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    padding: 0px;
-} */
+.headcontent {
+    width: auto;
+    height: auto;
+    /* border: solid black 1px; */
+}
+
+body {
+
+  background-image: url('../assests/5.car.png');
+}
+
+#first {
+  padding-right:  0px;
+  padding-left: 0px;
+}
 
 .navbar {
-  background: #ff8b06 !important;
-  color: aliceblue;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-size: 35px;
-}
-.navbar-brand {
-  font-size: 45px;
-  font-weight: bold;
-  color: #212c64 !important;
-}
+    background: #ff8b06 !important;
+    color: aliceblue;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 35px;
+  }
+
+  .navbar-brand {
+    font-size: 45px;
+    font-weight: bold;
+    color: #212c64 !important;
+  }
 
 .user {
   margin-right: 10em;
