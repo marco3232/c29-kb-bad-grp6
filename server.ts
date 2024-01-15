@@ -30,12 +30,14 @@ app.get("/hi", (req: Request, res: Response) => {
   res.send("im hihi");
 });
 
-app.post("/tripplan", async(req: Request, res: Response) => {
+app.post("/tripplan", async (req: Request, res: Response) => {
   const { numberOfRenters, relationship, ageRange, rentalDays, rentalPurpose } =
     req.body;
   console.log("imreqbody", req.body);
 
   const pythonServer = "http://127.0.0.1:5000/tripplan";
+
+
 
   fetch(pythonServer, {
     method: "POST",
@@ -50,53 +52,18 @@ app.post("/tripplan", async(req: Request, res: Response) => {
       rentalPurpose,
     }),
   })
-    .then(async(response) => {
+    .then(async (response) => {
       console.log("Raw response from Python server:", response);
-      return  response.json();
+      return response.json();
     })
-    .then(async(data) => {
+    .then(async (data) => {
       // Process the data from the Python server
       console.log("Data from Python server:", data);
       res.json({
         success: true,
         message: "Data sent to Python server successfully",
       });
-      // Insert the data into the "tripplans" table
 
-      for (let item of data) {
-        await knex("tripplans").insert({
-            name: item.name,
-            description: item.description,
-            carparkname: item.carpark_name,
-            carparklink: item.carpark_link,
-            capacity: item.capacity
-             });
-
-      }
-        
-        
-      // const tripPlansForInsert = data.map((tripPlan:any) => ({
-      //   name: tripPlan.name,
-      //   description: tripPlan.description,
-      //   carpark_name: tripPlan.carpark_name,
-      //   carpark_link: tripPlan.carpark_link,
-      //   capacity: tripPlan.capacity,
-      // }));
-  
-      // // Batch insert all trip plans into the "tripplans" table
-      // await knex.batchInsert("tripplans", tripPlansForInsert);
-  
-
-
-      // console.log("insert??",data.description)
-    })
-    .catch((error) => {
-      console.error("Error sending data to Python server:", error.message);
-      res
-        .status(500)
-        .json({ success: false, message: "Internal server error" });
-    });
-});
 
 app.use(express.static("public"));
 app.use((req, res, next) =>
