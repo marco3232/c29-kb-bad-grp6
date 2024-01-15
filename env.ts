@@ -21,7 +21,7 @@ function loadEnv() {
           TEST_DB_NAME: '',
           TEST_DB_USERNAME: '',
           TEST_DB_PASSWORD: '',
-          SESSION_SECRET: '',
+          SESSION_SECRET: 'jodsjgklsgd',
         }
       populateEnv(env, { mode: 'halt' })
       return {
@@ -65,7 +65,7 @@ function loadEnv() {
           DB_NAME: '',
           DB_USERNAME: '',
           DB_PASSWORD: '',
-          SESSION_SECRET: '',
+          SESSION_SECRET: 'jodsjgklsgd',
         }
       populateEnv(env, { mode: 'halt' })
       // console.log("check env",env)

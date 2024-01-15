@@ -46,6 +46,7 @@
     "listening-on": "^2.0.9",
     "pg": "^8.11.3",
     "populate-env": "^2.0.0",
+    "request": "^2.88.2",
     "request-promise": "^4.2.6",
     "sqlite3": "^5.1.7"
   },
