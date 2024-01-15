@@ -62,33 +62,13 @@ app.post("/tripplan", async(req: Request, res: Response) => {
         message: "Data sent to Python server successfully",
       });
       // Insert the data into the "tripplans" table
-
-      for (let item of data) {
         await knex("tripplans").insert({
-            name: item.name,
-            description: item.description,
-            carparkname: item.carpark_name,
-            carparklink: item.carpark_link,
-            capacity: item.capacity
-             });
-
-      }
-        
-        
-      // const tripPlansForInsert = data.map((tripPlan:any) => ({
-      //   name: tripPlan.name,
-      //   description: tripPlan.description,
-      //   carpark_name: tripPlan.carpark_name,
-      //   carpark_link: tripPlan.carpark_link,
-      //   capacity: tripPlan.capacity,
-      // }));
-  
-      // // Batch insert all trip plans into the "tripplans" table
-      // await knex.batchInsert("tripplans", tripPlansForInsert);
-  
-
-
-      // console.log("insert??",data.description)
+          name: data.name,
+          description: data.description,
+          carparkname: data.carpark_name,
+          carparklink: data.carpark_link,
+          capacity: data.capacity
+           });
     })
     .catch((error) => {
       console.error("Error sending data to Python server:", error.message);
@@ -96,6 +76,63 @@ app.post("/tripplan", async(req: Request, res: Response) => {
         .status(500)
         .json({ success: false, message: "Internal server error" });
     });
+
+// method 2 
+
+    // try {
+    //   const response = await fetch(pythonServer, {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify({
+    //       numberOfRenters,
+    //       relationship,
+    //       ageRange,
+    //       rentalDays,
+    //       rentalPurpose,
+    //     }),
+    //   });
+  
+    //   const rawData = await response.text();
+    //   console.log("Raw data from Python server:", rawData);
+  
+    //   try {
+    //     const data = JSON.parse(rawData);
+  
+    //     if (Array.isArray(data) && data.length > 0) {
+    //       // Use a database transaction for the insertion
+    //       await knex.transaction(async (trx) => {
+    //         // Insert each object into the "tripplans" table
+    //         for (let item of data) {
+    //           await trx("tripplans").insert({
+    //             name: item.name,
+    //             description: item.description,
+    //             carparkname: item.carpark_name,
+    //             carparklink: item.carpark_link,
+    //             capacity: item.capacity,
+    //           });
+    //         }
+    //       });
+  
+    //       res.json({
+    //         success: true,
+    //         message: "Data sent to Python server and inserted into PostgreSQL successfully",
+    //       });
+    //     } else {
+    //       console.error("Unexpected data format from Python server:", data);
+    //       res.status(500).json({ success: false, message: "Internal server error" });
+    //     }
+    //   } catch (parseError) {
+    //     console.error("Error parsing JSON:", parseError);
+    //     throw new Error("Unable to parse JSON from Python server");
+    //   }
+    // } catch (error:any) {
+    //   console.error("Error:", error.message);
+    //   res.status(500).json({ success: false, message: "Internal server error" });
+    // }
+   
+  
 });
 
 app.use(express.static("public"));
