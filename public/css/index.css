@@ -25,8 +25,42 @@
 }
 .user-icon {
   display: flex;
-  justify-self: end;
+  /* justify-self: end; */
+  align-self: center;
   margin-right: 20px;
- 
+  text-decoration:none;
 }
 
+.email-font {
+  display: inline-flex;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color: #fee440;
+  background-color: rgb(13, 14, 14);
+  border: solid white;
+  border-radius: 20px;
+  
+}
+.id-font {
+  display: inline-flex;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color: #fee440;
+  background-color: rgb(13, 14, 14);
+  border: solid white;
+}
+.center-button{
+  align-self: center;
+  font-size:18px;
+}
+.icon-color{
+  color:#ffffff;
+  margin-right:10px;
+}
+.button-text{
+  color:#ffffff;
+}
+
+/* @media screen and (min-width: 1100px) {
+  .user-icon {
+    color:gold;
+  }
+} */

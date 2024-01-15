@@ -18,8 +18,7 @@ export class UserService {
       password: input.password,
       password_hash: users.password_hash,
     });
-    console.log("check service", input);
-    console.log("check email", input.email);
+    console.log("check service ts", input);
     if (!is_matched) throw new HttpError(401, "wrong email or password");
 
     return { id: users.id };
@@ -34,15 +33,15 @@ export class UserService {
       .select("id")
       .where("email", input.email);
     console.log("want check users select", users);
-    if (users.length) {
-      throw new HttpError(404, "email already exist");
+    if (users.length != 0) {
+      throw new HttpError(409, "email already exist");
     } else {
       let hashed = await hashPassword(input.password);
       await this.knex("users")
         .insert({ email: input.email, password_hash: hashed, tel: input.tel })
         .catch((e: any) => console.error(e))
         .then(() => {});
-    }  return { message: "User registration successful" };
+    }
+    return { message: "User registration successful" };
   }
-;
 }

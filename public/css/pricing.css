@@ -1,0 +1,28 @@
+.headcontent {
+    width: auto;
+    height: auto;
+    /* border: solid black 1px; */
+}
+
+.navbar {
+    background: #ff8b06 !important;
+    color: aliceblue;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 35px;
+  }
+
+  .navbar-brand {
+    font-size: 45px;
+    font-weight: bold;
+    color: #212c64 !important;
+  }
+
+  .login-and-create-acc {
+    display: flex;
+    align-items: center;
+    color: #212c64;
+  }
+
+  #username-display {
+    margin-right: 10px;
+  }
