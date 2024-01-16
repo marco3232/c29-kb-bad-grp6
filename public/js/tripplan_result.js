@@ -21,20 +21,18 @@ async function showResult() {
   for (let entry of data) {
     resultHTML += `
   <tr>
-        <th>${entry.routes}</th>
+  <td> </td>
+  <td>${entry.name}</td>
+  <td>${entry.description}</td>
+  <td>${entry.carparkname}</td>
+  <td>${entry.carparklink}</td>
+  <td>${entry.capacity}</td>
   </tr>
-        <tr>
-        <td>${entry.name}</td>
-        <td>${entry.description}</td>
-        <td>${entry.carparkname}</td>
-        <td>${entry.carparklink}</td>
-        <td>${entry.capacity}</td>
-        </tr>
     `;
 
   }
 
-  document.querySelector(".tripplanArea").innerHTML = resultHTML;
+  document.querySelector(".tripplanResult").innerHTML = resultHTML;
 }
 
   
@@ -42,3 +40,17 @@ async function showResult() {
 
 
 
+// <tr>
+// <th>${entry.routes}</th>
+// <th>景點描述</th>
+// <th>附近停車場</th>
+// <th>附近停車場GOOGLE MAP連結</th>
+// <th>停車場可供車位</th>
+// </tr>
+// <tr>
+// <td>${entry.name}</td>
+// <td>${entry.description}</td>
+// <td>${entry.carparkname}</td>
+// <td>${entry.carparklink}</td>
+// <td>${entry.capacity}</td>
+// </tr>
