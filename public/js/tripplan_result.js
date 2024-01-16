@@ -10,6 +10,7 @@ async function getResult() {
 window.onload = async () => {
     getResult();
     showResult()
+   
   };
 
 async function showResult() {
@@ -37,5 +38,7 @@ async function showResult() {
 }
 
   
+
+
 
 

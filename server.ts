@@ -105,10 +105,9 @@ app.post("/tripplan", async(req: Request, res: Response) => {
 
 
 app.get("/tripplan_result", async (req: Request, res: Response) => {
-  const result = await knex.select("*").from("tripplans");
-  res.json(result[0])
-  console.log("DB Result", result);
+  const result = await knex.select("*").from("tripplans").limit(3);
   res.json(result)
+  console.log("DB Result", result);
 });
 
 
