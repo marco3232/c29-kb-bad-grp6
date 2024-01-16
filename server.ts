@@ -37,6 +37,7 @@ app.get("/hot-picks",async(req:Request,res:Response)=>{
 app.get("/tripplan_result", async (req: Request, res: Response) => {
   const result = await knex.select("*").from("tripplans").limit(3);
   console.log("DB Result", result);
+  res.json(result)
 });
 
 
