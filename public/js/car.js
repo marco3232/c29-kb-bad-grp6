@@ -17,7 +17,9 @@ async function showProducts(){
     console.log("showproducts",result)
     let indexProduct = "";
 
+
     for (let entry of result){
+
         indexProduct += `          <div class="col-md-3 head-4">
         <div class="wsk-cp-product">
           <div class="wsk-cp-img">
