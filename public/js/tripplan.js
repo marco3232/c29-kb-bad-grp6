@@ -15,7 +15,7 @@ document
       rentalPurpose: form.rentalPurpose.value,
     };
     console.log("formObject", formObject);
-    const res = await fetch("/user/tripplan", {
+    const res = await fetch("/tripplan", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -28,7 +28,7 @@ document
 
     // document.querySelector('loadingGif').style.display = 'block';
 
-      console.log("check result",res)
+      // console.log("check result",res)
 
       if (res.status == 401) {
         console.log("required login");
@@ -43,12 +43,12 @@ document
         });
       }
 
-     else if (res.status == 200) {
+      else if (res.status == 200) {
         console.log("Data sent to Python server successfully")
 
           window.location.href = "tripplan_result.html";
         }else{
-          console.log("data sent to node, but cannot fetch")
+          // console.log("data sent to node, but cannot fetch")
           alert("Something Wrong! Please try again");
           window.location.reload()
         }
