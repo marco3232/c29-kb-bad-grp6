@@ -34,7 +34,7 @@
     <div class="first container-fluid" id="first"></div>
     <div id="id-display"></div>
     <div class="bodycontent">
-      <form class="box" id="tripplan" >
+      <form class="box" id="tripplan">
         <label for="numberOfRenters">租車人數:</label>
         <select id="box" class="peopleSelectbox" name="numberOfRenters">
           <option value="2人" name="peopletwo">2人</option>
@@ -70,15 +70,19 @@
           <option value="遊覽香港" name="hongkong">遊覽香港</option>
         </select>
         <br /><br />
-        <input type="submit" value="撳我建議最佳自駕遊路線&#129322;" onclick="loading()" /> 
+        <div class="gen-ai"></div>
+        <input
+          type="submit"
+          value="撳我建議最佳自駕遊路線&#129322;"
+          onclick="loading()"
+        />
 
-            <div id="loading">
-              <img src="./assests/loading.gif" alt="Loading..." >
+        <div id="loading">
+          <img src="./assests/loading.gif" alt="Loading..." />
+        </div>
       </form>
     </div>
 
-    
-    
     <script src="./js/tripplan.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="./js/all.js"></script>

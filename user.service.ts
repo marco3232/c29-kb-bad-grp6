@@ -44,4 +44,28 @@ export class UserService {
     }
     return { message: "User registration successful" };
   }
+
+  public async tripplan(input: {
+    routes: number;
+    name: string;
+    description: string;
+    carpark_name: string;
+    carpark_link: string;
+    capacity: string;
+  }) {
+    await this.knex("tripplans")
+      .insert({
+        routes: input.routes,
+        name: input.name,
+        description: input.description,
+        carparkname: input.carpark_name,
+        carparklink: input.carpark_link,
+        capacity: input.capacity,
+      })
+      .catch((error) => {
+        console.error("Error sending data to Python server:", error.message);
+
+      });
+      return ({ message: "tripplan done" });
+    }
 }

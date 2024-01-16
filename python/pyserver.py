@@ -33,7 +33,7 @@ def postdata():
 
 每次建議時，請不要重複客戶給你的json object，此點要緊記。
 
-以下為輸出例子,你必須嚴格跟從，每個景點需填寫6個key，當多於一個景點時，應把新景點作為獨立json object，置於array中：
+以下為輸出例子，每個景點需填寫6個key，當多於一個景點時，應把新景點作為獨立json object，置於array中，形成結構 Array of JSON Object：
 
 [{{
 "routes":1,
@@ -42,8 +42,23 @@ def postdata():
 "carpark_name": "太平山頂停車場",
 "carpark_link": "https://www.google.com/maps/search/太平山頂停車場",
 "capacity": "約200個停車位"
-}}
-]
+}},{{
+  "routes": 2,
+  "name": "香港迪士尼樂園",
+  "description": "帶著你的另一半來到香港迪士尼樂園，度過浪漫的一天。在這裡，你可以和你的愛人一起搭乘各種刺激有趣的遊樂設施，享受奇妙的冒險。迪士尼樂園充滿童話氛圍，有許多美麗的拍照景點，你們可以一起留下難忘的瞬間。此外，還有許多餐廳和商店供你們選擇，讓你們一同品嚐美食和購物。在這裡，你們一定會度過一個難忘的情侶約會。",
+  "carpark_name": "迪士尼樂園停車場",
+  "carpark_link": "https://www.google.com/maps/search/迪士尼樂園停車場",
+  "capacity": "約2000個停車位"
+}},
+{{
+  "routes": 3,
+  "name": "香港海洋公園",
+  "description": "來到香港海洋公園，情侶可以一同體驗刺激的遊樂設施與觀看精彩的海洋動物表演。公園內分為兩個主題區域，包含海洋世界和海洋劇場，您可以在這裡近距離觀賞各種奇妙的水生生物。此外，公園還有速降塔和過山車等驚險的遊樂設施，為情侶帶來刺激和快樂。在公園內還有多個餐廳和小食亭，提供各種美食供情侶品嚐。無論是遊覽動物或激情刺激，香港海洋公園都是情侶旅遊的不二之選。",
+  "carpark_name": "香港海洋公園停車場",
+  "carpark_link": "https://www.google.com/maps/search/香港海洋公園停車場",
+  "capacity": "約500個停車位"
+}}]
+
 
 請務必提供正確資料，不要提供不存在和虛構的景點，請務必提供2021-2023年的最新資料。
 
@@ -62,6 +77,9 @@ def postdata():
 
     # Extract and print the GPT-3.5-turbo response
     gpt_response = response.choices[0].message.content
+    
+    print("-------------")
+    print(gpt_response)
     # print("GPT-3.5-turbo response:", gpt_response)
     print("GPT-3.5-turbo response:", jsonify(gpt_response))
 
