@@ -25,7 +25,7 @@ aria-label="Fifth navbar example"
         <a class="nav-link" href="./pricing.html">Pricing</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="./tripplan.html">Trip Plan</a>
+        <a class="nav-link" href="./tripplan.html">Trip-Plan</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="./car.html">Cars</a>
@@ -44,31 +44,14 @@ aria-label="Fifth navbar example"
       </a>
     </div>
 
-
-
     <div class="nav-item center-button"></div>
+    
+    
   </div>
 </div>
 </nav>`;
 
-async function goToLink(target_url) {
-  let res = await fetch(`${target_url}`);
 
-  if (res.status == 401) {
-    console.log("required login");
-    Swal.fire({
-      icon: "error",
-      title: "Oops...",
-      text: "You have to log in first",
-    }).then(() => {
-      console.log("go to login");
-
-      window.location.href = "/login.html";
-    });
-  } else if ((res.status = 200)) {
-    window.location.href = target_url;
-  }
-}
 
 window.onload = async () => {
   const controller = new AbortController();
@@ -142,4 +125,23 @@ function addLogoutEventListener() {
       });
     }
   });
+}
+
+async function goToLink(target_url) {
+  let res = await fetch(`${target_url}`);
+
+  if (res.status == 401) {
+    console.log("required login");
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "You have to log in first",
+    }).then(() => {
+      console.log("go to login");
+
+      window.location.href = "/login.html";
+    });
+  } else if ((res.status = 200)) {
+    window.location.href = target_url;
+  }
 }
