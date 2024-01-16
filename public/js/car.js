@@ -20,7 +20,7 @@ async function showProducts(){
 
     for (let entry of result){
 
-        indexProduct += `          <div class="col-md-3 head-4">
+        indexProduct += `<div class="col-md-3 head-4">
         <div class="wsk-cp-product">
           <div class="wsk-cp-img">
             <img
