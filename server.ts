@@ -48,25 +48,13 @@ app.get("/hi", (req: Request, res: Response) => {
 //       rentalPurpose,
 //     }),
 //   })
-//     .then(async(response) => {
+//     .then(async (response) => {
 //       console.log("Raw response from Python server:", response);
-//       return  response.json();
+//       return response.json();
 //     })
-//     .then(async(data) => {
+//     .then(async (data) => {
 //       // Process the data from the Python server
 //       console.log("Data from Python server:", data);
-//       res.json({
-//         success: true,
-//         message: "Data sent to Python server successfully",
-//       });
-      // Insert the data into the "tripplans" table
-        // await knex("tripplans").insert({
-        //   name: data.name,
-        //   description: data.description,
-        //   carparkname: data.carpark_name,
-        //   carparklink: data.carpark_link,
-        //   capacity: data.capacity
-        //    });
 
       // type pythonDateType = {
       //   routes: number;
@@ -75,114 +63,45 @@ app.get("/hi", (req: Request, res: Response) => {
       //   carpark_name: string;
       //   carpark_link: string;
       //   capacity: string;
+      // };
+
+      // for (let entry of data) {
+      //   await knex("tripplans").insert({
+      //     routes: entry.routes,
+      //     name: entry.name,
+      //     description: entry.description,
+      //     carparkname: entry.carpark_name,
+      //     carparklink: entry.carpark_link,
+      //     capacity: entry.capacity,
+      //   });
       // }
-
-      // let route : pythonDateType[] = [
-      //   {
-      //     routes:1,
-      //     name: data[0].name,
-      //     description: data[0].description,
-      //     carpark_name: data[0].carpark_name,
-      //     carpark_link: data[0].carpark_link,
-      //     capacity: data[0].capacity,
-      //   },
-      //   {
-      //     routes:2,
-      //     name: data[1].name,
-      //     description: data[1].description,
-      //     carpark_name: data[1].carpark_name,
-      //     carpark_link: data[1].carpark_link,
-      //     capacity: data[1].capacity,
-      //   },
-      //   {
-      //     routes:3,
-      //     name: data.name,
-      //     description: data.description,
-      //     carpark_name: data.carpark_name,
-      //     carpark_link: data.carpark_link,
-      //     capacity: data.capacity,
-      //   },
-      // ]
-
-    //   for (let entry of data) {
-    //     await knex("tripplans").insert({
-    //       routes: entry.routes,
-    //       name: entry.name,
-    //       description: entry.description,
-    //       carparkname: entry.carpark_name,
-    //       carparklink: entry.carpark_link,
-    //       capacity: entry.capacity,
-    //     })
-    //   }
-    //   console.log("Data from python",data)
-
-    // })
-    // .catch((error) => {
-    //   console.error("Error sending data to Python server:", error.message);
       
-    //   res
-    //     .status(500)
-    //     .json({ success: false, message: "Internal server error" });
-    // });
+    //  console.log("Data back from python", data);
 
-// method 2 
+//       res
+//       .status(200)
+//       .json({
+//         success: true,
+//         message: "Data sent to Python server successfully",
+//       });
+//     })
+//     .catch((error) => {
+//       console.error("Error sending data to Python server:", error.message);
 
-    // try {
-    //   const response = await fetch(pythonServer, {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({
-    //       numberOfRenters,
-    //       relationship,
-    //       ageRange,
-    //       rentalDays,
-    //       rentalPurpose,
-    //     }),
-    //   });
-  
-    //   const rawData = await response.text();
-    //   console.log("Raw data from Python server:", rawData);
-  
-    //   try {
-    //     const data = JSON.parse(rawData);
-  
-    //     if (Array.isArray(data) && data.length > 0) {
-    //       // Use a database transaction for the insertion
-    //       await knex.transaction(async (trx) => {
-    //         // Insert each object into the "tripplans" table
-    //         for (let item of data) {
-    //           await trx("tripplans").insert({
-    //             routes:item.routes,
-    //             name: item.name,
-    //             description: item.description,
-    //             carparkname: item.carpark_name,
-    //             carparklink: item.carpark_link,
-    //             capacity: item.capacity,
-    //           });
-    //         }
-    //       });
-  
-    //       res.json({
-    //         success: true,
-    //         message: "Data sent to Python server and inserted into PostgreSQL successfully",
-    //       });
-    //     } else {
-    //       console.error("Unexpected data format from Python server:", data);
-    //       res.status(500).json({ success: false, message: "Internal server error" });
-    //     }
-    //   } catch (parseError) {
-    //     console.error("Error parsing JSON:", parseError);
-    //     throw new Error("Unable to parse JSON from Python server");
-    //   }
-    // } catch (error:any) {
-    //   console.error("Error:", error.message);
-    //   res.status(500).json({ success: false, message: "Internal server error" });
-    // }
-   
-  
+//       res
+//         .status(500)
+//         .json({ success: false, message: "Internal server error" });
+//     });
 // });
+
+
+app.get("/tripplan_result", async (req: Request, res: Response) => {
+  const result = await knex.select("*").from("tripplans").offset(3);
+  console.log("DB Result", result);
+});
+
+
+
 
 app.use(express.static("public"));
 app.use(express.static("private"));
