@@ -28,7 +28,11 @@ app.get("/hi", (req: Request, res: Response) => {
   res.send("im hihi");
 });
 
-
+app.get("/hot-picks",async(req:Request,res:Response)=>{
+  let hotPicks = await knex.select("*").from("cars").limit(4)
+  console.log("hotPicks",hotPicks)
+  res.json(hotPicks)
+})
 
 app.get("/tripplan_result", async (req: Request, res: Response) => {
   const result = await knex.select("*").from("tripplans").limit(3);

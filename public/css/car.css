@@ -281,3 +281,11 @@ a.buy-btn{
 .text-center {
   padding-top: 20px;
 }
+.cars-area1 {
+  display: flex;
+  justify-content: center;
+  margin: 0px;
+}
+.head-4 {
+  margin: 10px;
+}
