@@ -9,10 +9,7 @@ window.onload = async () => {
   for (let entry of data) {
     resultHTML += `
   <tr>
-    <th>${entry.routes}</th>
-        </tr>
-        </thead>
-        <tr>
+        <th>${entry.routes}</th>
         <td>${entry.name}</td>
         <td>${entry.description}</td>
         <td>${entry.carparkname}</td>
