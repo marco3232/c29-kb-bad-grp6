@@ -36,71 +36,71 @@ app.get("/hot-picks",async(req:Request,res:Response)=>{
 
 
 // trip plan //
-app.post("/tripplan", async(req: Request, res: Response) => {
-  const { numberOfRenters, relationship, ageRange, rentalDays, rentalPurpose } =
-  req.body;
-  console.log("imreqbody", req.body);
+// app.post("/tripplan", async(req: Request, res: Response) => {
+//   const { numberOfRenters, relationship, ageRange, rentalDays, rentalPurpose } =
+//   req.body;
+//   console.log("imreqbody", req.body);
   
-  const pythonServer = "http://127.0.0.1:5000/tripplan";
+//   const pythonServer = "http://127.0.0.1:5000/tripplan";
   
-  fetch(pythonServer, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      numberOfRenters,
-      relationship,
-      ageRange,
-      rentalDays,
-      rentalPurpose,
-    }),
-  })
-  .then(async (response) => {
-    console.log("Raw response from Python server:", response);
-    return response.json();
-  })
-  .then(async (data) => {
-    // Process the data from the Python server
-    console.log("Data from Python server:", data);
+//   fetch(pythonServer, {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify({
+//       numberOfRenters,
+//       relationship,
+//       ageRange,
+//       rentalDays,
+//       rentalPurpose,
+//     }),
+//   })
+//   .then(async (response) => {
+//     console.log("Raw response from Python server:", response);
+//     return response.json();
+//   })
+//   .then(async (data) => {
+//     // Process the data from the Python server
+//     console.log("Data from Python server:", data);
     
-    type pythonDateType = {
-      routes: number;
-      name: string;
-      description: string;
-      carpark_name: string;
-      carpark_link: string;
-      capacity: string;
-    };
+//     type pythonDateType = {
+//       routes: number;
+//       name: string;
+//       description: string;
+//       carpark_name: string;
+//       carpark_link: string;
+//       capacity: string;
+//     };
     
-    for (let entry of data) {
-      await knex("tripplans").insert({
-        routes: entry.routes,
-        name: entry.name,
-        description: entry.description,
-        carparkname: entry.carpark_name,
-        carparklink: entry.carpark_link,
-        capacity: entry.capacity,
-      });
-    }
+//     for (let entry of data) {
+//       await knex("tripplans").insert({
+//         routes: entry.routes,
+//         name: entry.name,
+//         description: entry.description,
+//         carparkname: entry.carpark_name,
+//         carparklink: entry.carpark_link,
+//         capacity: entry.capacity,
+//       });
+//     }
     
-    console.log("Data back from python", data);
+//     console.log("Data back from python", data);
     
-    res
-    .status(200)
-    .json({
-      success: true,
-      message: "Data sent to Python server successfully",
-    });
-  })
-  .catch((error) => {
-    console.error("Error sending data to Python server:", error.message);
+//     res
+//     .status(200)
+//     .json({
+//       success: true,
+//       message: "Data sent to Python server successfully",
+//     });
+//   })
+//   .catch((error) => {
+//     console.error("Error sending data to Python server:", error.message);
     
-    res
-    .status(500)
-    .json({ success: false, message: "Internal server error" });
-  });
-});
+//     res
+//     .status(500)
+//     .json({ success: false, message: "Internal server error" });
+//   });
+// });
 // trip plan end//
 
 

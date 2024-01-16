@@ -15,7 +15,7 @@ document
       rentalPurpose: form.rentalPurpose.value,
     };
     console.log("formObject", formObject);
-    const res = await fetch("/tripplan", {
+    const res = await fetch("/user/tripplan", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

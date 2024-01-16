@@ -118,8 +118,13 @@ export class UserController {
   };
 
   tripplan = async (req: Request, res: Response) => {
-    let { numberOfRenters, relationship, ageRange, rentalDays, rentalPurpose } =
-      req.body;
+    const {
+      numberOfRenters,
+      relationship,
+      ageRange,
+      rentalDays,
+      rentalPurpose,
+    } = req.body;
     console.log("imreqbody", req.body);
 
     const pythonServer = "http://127.0.0.1:5000/tripplan";
@@ -145,14 +150,9 @@ export class UserController {
         // Process the data from the Python server
         console.log("Data from Python server:", data);
 
-        res.json({
-          success: true,
-          message: "Data sent to Python server successfully",
-        });
-
         console.log("Data from python", data);
         for (let entry of data) {
-          let json = await this.userService.tripplan({
+          let res = await this.userService.tripplan({
             routes: entry.routes,
             name: entry.name,
             description: entry.description,
@@ -160,13 +160,19 @@ export class UserController {
             carpark_link: entry.carpark_link,
             capacity: entry.capacity,
           });
-          res.json(json);
+
+          console.log("insert database result", res);
         }
+
+        return res.status(200).json({
+          success: true,
+          message: "Data sent to Python server and suggestion returned successfully",
+        });
       })
       .catch((error) => {
         console.error("Error sending data to Python server:", error.message);
 
-        res
+        return res
           .status(500)
           .json({ success: false, message: "Internal server error" });
       });

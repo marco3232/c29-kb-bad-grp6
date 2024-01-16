@@ -40,6 +40,8 @@ body {
   text-decoration:none;
 }
 
+
+
 .email-font {
   display: inline-flex;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -55,7 +57,7 @@ body {
   color: #fee440;
   background-color: rgb(13, 14, 14);
   border: solid white;
-  size: 10px;
+  font-size: 1.7rem;
 }
 .center-button{
   align-self: center;
@@ -68,9 +70,7 @@ body {
 .button-text{
   color:#ffffff;
 }
-#id-display{
-  font-size: 10px;
-}
+
 /* @media screen and (min-width: 1100px) {
   .user-icon {
     color:gold;
