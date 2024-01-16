@@ -1,3 +1,5 @@
+console.log("hihih")
+
 window.onload = async () => {
     getResult();
 
@@ -9,14 +11,14 @@ window.onload = async () => {
   for (let entry of data) {
     resultHTML += `
   <tr>
-        <th>${entry.routes[0]}</th>
+        <th>${entry.routes}</th>
   </tr>
         <tr>
-        <td>${entry.name[0]}</td>
-        <td>${entry.description[0]}</td>
-        <td>${entry.carparkname[0]}</td>
-        <td>${entry.carparklink[0]}</td>
-        <td>${entry.capacity[0]}</td>
+        <td>${entry.name}</td>
+        <td>${entry.description}</td>
+        <td>${entry.carparkname}</td>
+        <td>${entry.carparklink}</td>
+        <td>${entry.capacity}</td>
         </tr>
     `;
 
@@ -30,6 +32,8 @@ window.onload = async () => {
 async function getResult() {
   let tripplan_res = await fetch("/tripplan_result");
   let tripplan_result = await tripplan_res.json()
+  console.log("check tripplan result",tripplan_result)
   return tripplan_result
+
   
 }
