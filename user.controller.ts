@@ -175,12 +175,10 @@ export class UserController {
       res.status(401).json({ message: "you are not logged in" });
       console.log("usercon(105)-session email is:", req.session.user.email);
     } else {
-      req.session.destroy((error) => {
-        if (error) {
-          res.status(500).json({ message: "logout failed" });
-        } else {
+      req.session.destroy(() => {
+   
           res.json({ message: "logout success" });
-        }
+        
       });
     }
   };

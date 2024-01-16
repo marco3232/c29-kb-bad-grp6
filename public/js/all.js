@@ -51,8 +51,6 @@ aria-label="Fifth navbar example"
 </div>
 </nav>`;
 
-
-
 window.onload = async () => {
   const controller = new AbortController();
   const signal = controller.signal;
@@ -126,4 +124,3 @@ function addLogoutEventListener() {
     }
   });
 }
-
