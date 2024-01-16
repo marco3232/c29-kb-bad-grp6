@@ -31,6 +31,16 @@ document
 
     // document.querySelector('loadingGif').style.display = 'block';
 
+      console.log("check result",res)
+      if (res.status == 200) {
+        console.log("Data sent to Python server successfully")
+
+          window.location.href = "tripplan_result.html";
+        }else{
+          console.log("data sent to node, but cannot fetch")
+          alert("Something Wrong! Please try again");
+          window.location.reload()
+        }
   });
 
 
@@ -38,21 +48,6 @@ async function loading() {
   document.querySelector("#loading").style.display = "block";
   console.log("now loading")
     
-  try {
-    // Perform a fetch request (replace 'url' with your actual URL)
-    await fetch('/tripplan_result');
-
-    // Delay the page navigation for 10 seconds
-    setTimeout(() => {
-        // Navigate to another page (replace 'newPage.html' with your actual page)
-        window.location.href = 'tripplan_result.html';
-    }, 10000); // 10000 milliseconds = 10 seconds
-} catch (error) {
-    // Handle any fetch errors here
-    console.error('Error during fetch:', error);
-}
-
-// To prevent the form from submitting, return false
 return false;
 }
 
