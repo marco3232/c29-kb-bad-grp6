@@ -1,9 +1,18 @@
 console.log("hihih")
 
+async function getResult() {
+  let tripplan_res = await fetch('/tripplan_result');
+  let tripplan_result = await tripplan_res.json()
+  console.log("check tripplan result",tripplan_result)
+  return tripplan_result  
+}
+
 window.onload = async () => {
     getResult();
+    showResult()
+  };
 
-
+async function showResult() {
   let data = await getResult();
 
   let resultHTML = "";
@@ -24,16 +33,9 @@ window.onload = async () => {
 
   }
 
-  document.querySelector(".result").innerHTML = resultHTML;
-};
-
-
-
-async function getResult() {
-  let tripplan_res = await fetch("/tripplan_result");
-  let tripplan_result = await tripplan_res.json()
-  console.log("check tripplan result",tripplan_result)
-  return tripplan_result
+  document.querySelector(".tripplanArea").innerHTML = resultHTML;
+}
 
   
-}
+
+

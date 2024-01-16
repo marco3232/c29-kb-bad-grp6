@@ -10,6 +10,6 @@ routes.get("/tripplan", (req, res) => {
     success: true,
     message: "Data receive successfully",
   });
-//   res.redirect("/tripplan_result.html");
+
 });
 

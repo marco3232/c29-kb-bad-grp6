@@ -117,55 +117,55 @@ export class UserController {
     }
   };
 
-  tripplan = async (req: Request, res: Response) => {
-    const {
-      numberOfRenters,
-      relationship,
-      ageRange,
-      rentalDays,
-      rentalPurpose,
-    } = req.body;
-    console.log("imreqbody", req.body);
+  // tripplan = async (req: Request, res: Response) => {
+  //   const {
+  //     numberOfRenters,
+  //     relationship,
+  //     ageRange,
+  //     rentalDays,
+  //     rentalPurpose,
+  //   } = req.body;
+  //   console.log("imreqbody", req.body);
 
-    const pythonServer = "http://127.0.0.1:5000/tripplan";
+  //   const pythonServer = "http://127.0.0.1:5000/tripplan";
 
-    fetch(pythonServer, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        numberOfRenters,
-        relationship,
-        ageRange,
-        rentalDays,
-        rentalPurpose,
-      }),
-    })
-      .then(async (response) => {
-        console.log("Raw response from Python server:", response);
-        return response.json();
-      })
-      .then(async (data) => {
-        // Process the data from the Python server
-        console.log("Data from Python server:", data);
+  //   fetch(pythonServer, {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({
+  //       numberOfRenters,
+  //       relationship,
+  //       ageRange,
+  //       rentalDays,
+  //       rentalPurpose,
+  //     }),
+  //   })
+  //     .then(async (response) => {
+  //       console.log("Raw response from Python server:", response);
+  //       return response.json();
+  //     })
+  //     .then(async (data) => {
+  //       // Process the data from the Python server
+  //       console.log("Data from Python server:", data);
     
-          res.json({
-            success: true,
-            message: "Data sent to Python server successfully",
-          });
+  //         res.json({
+  //           success: true,
+  //           message: "Data sent to Python server successfully",
+  //         });
         
 
-        console.log("Data from python", data);
-      })
-      .catch((error) => {
-        console.error("Error sending data to Python server:", error.message);
+  //       console.log("Data from python", data);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error sending data to Python server:", error.message);
 
-        res
-          .status(500)
-          .json({ success: false, message: "Internal server error" });
-      });
-  };
+  //       res
+  //         .status(500)
+  //         .json({ success: false, message: "Internal server error" });
+  //     });
+  // };
 
   logout = async (req: Request, res: Response) => {
     if (!req.session.user) {
