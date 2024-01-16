@@ -52,7 +52,7 @@ export class UserService {
     carpark_name: string;
     carpark_link: string;
     capacity: string;
-  }) {
+  }): Promise<{ message: string }> {
     await this.knex("tripplans")
       .insert({
         routes: input.routes,
@@ -64,8 +64,7 @@ export class UserService {
       })
       .catch((error) => {
         console.error("Error sending data to Python server:", error.message);
-
       });
-      return ({ message: "tripplan done" });
-    }
+    return { message: "tripplan done" };
+  }
 }

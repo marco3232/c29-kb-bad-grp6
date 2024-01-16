@@ -118,13 +118,8 @@ export class UserController {
   };
 
   tripplan = async (req: Request, res: Response) => {
-    const {
-      numberOfRenters,
-      relationship,
-      ageRange,
-      rentalDays,
-      rentalPurpose,
-    } = req.body;
+    let { numberOfRenters, relationship, ageRange, rentalDays, rentalPurpose } =
+      req.body;
     console.log("imreqbody", req.body);
 
     const pythonServer = "http://127.0.0.1:5000/tripplan";
@@ -149,14 +144,24 @@ export class UserController {
       .then(async (data) => {
         // Process the data from the Python server
         console.log("Data from Python server:", data);
-    
-          res.json({
-            success: true,
-            message: "Data sent to Python server successfully",
-          });
-        
+
+        res.json({
+          success: true,
+          message: "Data sent to Python server successfully",
+        });
 
         console.log("Data from python", data);
+        for (let entry of data) {
+          let json = await this.userService.tripplan({
+            routes: entry.routes,
+            name: entry.name,
+            description: entry.description,
+            carpark_name: entry.carpark_name,
+            carpark_link: entry.carpark_link,
+            capacity: entry.capacity,
+          });
+          res.json(json);
+        }
       })
       .catch((error) => {
         console.error("Error sending data to Python server:", error.message);
@@ -176,9 +181,7 @@ export class UserController {
       console.log("usercon(105)-session email is:", req.session.user.email);
     } else {
       req.session.destroy(() => {
-   
-          res.json({ message: "logout success" });
-        
+        res.json({ message: "logout success" });
       });
     }
   };

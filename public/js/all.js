@@ -72,8 +72,8 @@ window.onload = async () => {
 
       document.querySelector(
         "#id-display"
-      ).innerHTML = `<h1 class="id-font">Login susccess!!Enjoy!!</h1>
-          <h1 class="id-font">My Dear User ID#${result.data}</h1>`;
+      ).innerHTML = `<h1 class="id-font">My Dear User</h1>
+          <h1 class="id-font">ID#${result.data}</h1>`;
 
       console.log("check result in index js333");
 
