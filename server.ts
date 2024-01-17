@@ -13,7 +13,6 @@ let knex = createKnex();
 let app = express();
 app.use(express.static("public"));
 
-
 // app.use //
 app.use(sessionMiddleware);
 app.use(express.json());
