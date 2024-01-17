@@ -43,7 +43,7 @@ app.get("/hot-picks",async(req:Request,res:Response)=>{
 })
 
 app.get("/tripplan_result", async (req: Request, res: Response) => {
-  const result = await knex.select("*").from("tripplans").limit(3);
+  const result = await knex.select("*").from("tripplans").orderBy("id","desc").limit(3);
   res.json(result);
   console.log("DB Result", result);
 });
