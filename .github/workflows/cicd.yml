@@ -57,7 +57,7 @@ jobs:
       - name: prepare archive built files
         run: |
           mkdir -p release
-          mv package.json dist public release
+          mv package.json dist public python release
       - name: upload release archive
         uses: actions/upload-artifact@v4
         with:
