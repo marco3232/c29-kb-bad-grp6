@@ -5,26 +5,23 @@ import { HttpError } from "./http.error";
 import { errorHandler } from "./errorHandler";
 import { env } from "./env";
 import { sessionMiddleware } from "./session";
-
+import { UserService } from "./user.service";
+import { UserController } from "./user.controller";
 
 var request = require("request-promise");
 
 let knex = createKnex();
 let app = express();
-app.use(express.static("public"));
+
+const userService = new UserService(knex);
+export const userController = new UserController(userService);
 
 // app.use //
 app.use(sessionMiddleware);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-
-// user route and controller //
-import { UserService } from "./user.service";
-import { UserController } from "./user.controller";
-const userService = new UserService(knex);
-export const userController = new UserController(userService);
-
+//ADD
 import { userRoute } from "./route/userRoute";
 
 app.use(userRoute);
@@ -35,6 +32,12 @@ app.use(userRoute);
 app.get("/hi", (req: Request, res: Response) => {
   res.send("im hihi");
 });
+
+app.get("/hot-picks",async(req:Request,res:Response)=>{
+  let hotPicks = await knex.select("*").from("cars").limit(4)
+  console.log("hotPicks",hotPicks)
+  res.json(hotPicks)
+})
 
 app.get("/tripplan_result", async (req: Request, res: Response) => {
   const result = await knex.select("*").from("tripplans").limit(3);

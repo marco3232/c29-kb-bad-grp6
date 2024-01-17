@@ -1,5 +1,9 @@
 console.log("tripplan");
 
+window.onload = async () => {
+  getUserId();
+};
+
 document
   .querySelector("#tripplan")
   .addEventListener("submit", async function (event) {
@@ -28,36 +32,33 @@ document
 
     // document.querySelector('loadingGif').style.display = 'block';
 
-      // console.log("check result",res)
+    // console.log("check result",res)
 
-      if (res.status == 401) {
-        console.log("required login");
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "You have to log in first",
-        }).then(() => {
-          console.log("go to login");
-    
-          window.location.href = "/login.html";
-        });
-      }
+    if (res.status == 401) {
+      console.log("required login");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "You have to log in first",
+      }).then(() => {
+        console.log("go to login");
 
-      else if (res.status == 200) {
-        console.log("Data sent to Python server successfully")
+        window.location.href = "/login.html";
+      });
+    } else if (res.status == 200) {
+      console.log("Data sent to Python server successfully");
 
-          window.location.href = "tripplan_result.html";
-        }else{
-          // console.log("data sent to node, but cannot fetch")
-          alert("Something Wrong! Please try again");
-          window.location.reload()
-        }
+      window.location.href = "tripplan_result.html";
+    } else {
+      // console.log("data sent to node, but cannot fetch")
+      alert("Something Wrong! Please try again");
+      window.location.reload();
+    }
   });
-
 
 async function loading() {
   document.querySelector("#loading").style.display = "block";
-  console.log("now loading")
-    
-return false;
+  console.log("now loading");
+
+  return false;
 }
