@@ -51,14 +51,17 @@ app.get("/hot-picks", async (req: Request, res: Response) => {
 
 // private //
 app.use(express.static("private"));
-app.use((req, res, next) =>
-  next(
-    new HttpError(
-      404,
-      `route not found, method: ${req.method}, url: ${req.url}`
-    )
-  )
-);
+
+
+
+// app.use((req, res, next) =>
+//   next(
+//     new HttpError(
+//       404,
+//       `route not found, method: ${req.method}, url: ${req.url}`
+//     )
+//   )
+// );
 
 app.use(errorHandler);
 
