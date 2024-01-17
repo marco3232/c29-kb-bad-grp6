@@ -24,8 +24,8 @@ export const userController = new UserController(userService);
 import { userRoute } from "./route/userRoute";
 
 
-
 app.use(express.static("public"));
+
 app.use(userRoute);
 app.get("/hi", (req: Request, res: Response) => {
   res.send("im hihi");
@@ -36,6 +36,12 @@ app.get("/hot-picks",async(req:Request,res:Response)=>{
   console.log("hotPicks",hotPicks)
   res.json(hotPicks)
 })
+
+app.get("/tripplan_result", async (req: Request, res: Response) => {
+  const result = await knex.select("*").from("tripplans").limit(3);
+  res.json(result)
+  console.log("DB Result", result);
+});
 
 
 // trip plan //
@@ -107,11 +113,6 @@ app.get("/hot-picks",async(req:Request,res:Response)=>{
 // trip plan end//
 
 
-app.get("/tripplan_result", async (req: Request, res: Response) => {
-  const result = await knex.select("*").from("tripplans").limit(3);
-  res.json(result)
-  console.log("DB Result", result);
-});
 
 
 
