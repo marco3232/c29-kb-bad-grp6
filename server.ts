@@ -23,11 +23,19 @@ export const userController = new UserController(userService);
 
 import { userRoute } from "./route/userRoute";
 
+
 app.use(express.static("public"));
-app.use(express.static("private"));
+
 app.use(userRoute);
 app.get("/hi", (req: Request, res: Response) => {
   res.send("im hihi");
+});
+
+
+app.get("/tripplan_result", async (req: Request, res: Response) => {
+  const result = await knex.select("*").from("tripplans").limit(3);
+  res.json(result)
+  console.log("DB Result", result);
 });
 
 app.get("/hot-picks",async(req:Request,res:Response)=>{
@@ -35,7 +43,6 @@ app.get("/hot-picks",async(req:Request,res:Response)=>{
   console.log("hotPicks",hotPicks)
   res.json(hotPicks)
 })
-
 
 // trip plan //
 // app.post("/tripplan", async(req: Request, res: Response) => {
@@ -106,15 +113,11 @@ app.get("/hot-picks",async(req:Request,res:Response)=>{
 // trip plan end//
 
 
-app.get("/tripplan_result", async (req: Request, res: Response) => {
-  const result = await knex.select("*").from("tripplans").limit(3);
-  res.json(result)
-  console.log("DB Result", result);
-});
 
 
 
 
+app.use(express.static("private"));
 app.use((req, res, next) =>
   next(
     new HttpError(
