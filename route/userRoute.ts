@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response, Router } from "express";
+import { Router } from "express";
 import { userController } from "../server";
 import { isLoggedIn } from "../middleware";
 export const userRoute = Router();
