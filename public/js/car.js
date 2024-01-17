@@ -2,7 +2,8 @@ console.log("im cars cars");
 
 window.onload = async () => {
   getProducts();
-  showProducts()
+  showProducts();
+  getUserId();
 };
 
 async function getProducts() {
@@ -12,15 +13,13 @@ async function getProducts() {
   return resp;
 }
 
-async function showProducts(){
-    let result = await getProducts();
-    console.log("showproducts",result)
-    let indexProduct = "";
+async function showProducts() {
+  let result = await getProducts();
+  console.log("showproducts", result);
+  let indexProduct = "";
 
-
-    for (let entry of result){
-
-        indexProduct += `<div class="col-md-3 head-4">
+  for (let entry of result) {
+    indexProduct += `<div class="col-md-3 head-4">
         <div class="wsk-cp-product">
           <div class="wsk-cp-img">
             <img
@@ -52,7 +51,7 @@ async function showProducts(){
             </div>
           </div>
         </div>
-      </div>`
-    }
-    document.querySelector(".cars-area1").innerHTML = indexProduct
+      </div>`;
+  }
+  document.querySelector(".cars-area1").innerHTML = indexProduct;
 }

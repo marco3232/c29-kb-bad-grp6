@@ -5,7 +5,8 @@
     padding: 0px;
 } */
 body {
-
+  font-weight: 300;
+  line-height: 1.42em;
   background-image: url('../assests/homepage.png');
 }
 
