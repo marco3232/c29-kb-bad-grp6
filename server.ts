@@ -11,13 +11,13 @@ var request = require("request-promise");
 
 let knex = createKnex();
 let app = express();
+app.use(express.static("public"));
 
 
 // app.use //
 app.use(sessionMiddleware);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static("public"));
 
 
 // user route and controller //
@@ -54,14 +54,14 @@ app.use(express.static("private"));
 
 
 
-// app.use((req, res, next) =>
-//   next(
-//     new HttpError(
-//       404,
-//       `route not found, method: ${req.method}, url: ${req.url}`
-//     )
-//   )
-// );
+app.use((req, res, next) =>
+  next(
+    new HttpError(
+      404,
+      `route not found, method: ${req.method}, url: ${req.url}`
+    )
+  )
+);
 
 app.use(errorHandler);
 
