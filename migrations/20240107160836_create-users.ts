@@ -5,7 +5,7 @@ export async function up(knex: Knex): Promise<void> {
     table.increments("id");
     table.string("email", 256).unique().notNullable;
     table.string("password_hash",2048).notNullable;
-    table.specificType("tel", "char(8)").unique();
+    table.specificType("tel", "char(8)");
     table.timestamps(false, true);
     table.string("id_card",10).unique()
     table.string("driving_license",10).unique()

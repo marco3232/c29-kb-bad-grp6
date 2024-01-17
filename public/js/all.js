@@ -51,7 +51,7 @@ aria-label="Fifth navbar example"
 </div>
 </nav>`;
 
-window.onload = async () => {
+async function getUserId () {
   const controller = new AbortController();
   const signal = controller.signal;
 

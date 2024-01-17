@@ -5,10 +5,12 @@
     font-size: 35px;
   }
 
-  /* body {
-
-    background-image: url('../assests/2.car.png');
-  } */
+  body {
+    font-weight: 300;
+    line-height: 1.42em;
+    background:#ddd;
+    /* background-image: url('../assests/2.car.png'); */
+  }
 
   #first {
     padding-right:  0px;
