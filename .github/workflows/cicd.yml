@@ -101,6 +101,7 @@ jobs:
             package.json \
             dist \
             public \
+            python \
             "${{env.SERVER_HOST}}:${{env.SERVER_DIR}}/"
       - name: instsall dependencies on server
         run: |
