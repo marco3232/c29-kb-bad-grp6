@@ -5,28 +5,31 @@ import { HttpError } from "./http.error";
 import { errorHandler } from "./errorHandler";
 import { env } from "./env";
 import { sessionMiddleware } from "./session";
-import { UserService } from "./user.service";
-import { UserController } from "./user.controller";
+
 
 var request = require("request-promise");
 
 let knex = createKnex();
 let app = express();
 
-const userService = new UserService(knex);
-export const userController = new UserController(userService);
 
 // app.use //
 app.use(sessionMiddleware);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(express.static("public"));
 
-//ADD
+
+
+// user route and controller end //
+import { UserService } from "./user.service";
+import { UserController } from "./user.controller";
+const userService = new UserService(knex);
+export const userController = new UserController(userService);
+
 import { userRoute } from "./route/userRoute";
 
 app.use(userRoute);
-// user route and controller end //
-
 
 // app.get //
 app.get("/hi", (req: Request, res: Response) => {
