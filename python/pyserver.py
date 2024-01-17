@@ -6,7 +6,7 @@ app = Flask(__name__)
 # api setup
 client = OpenAI(
     base_url="https://api.gpt.tecky.ai/v1",
-    api_key="2efb8493-d322-4a69-b725-896dbc4c3eb7"
+    api_key="b4c163d3-95fa-4cf5-a9ef-e65a7e90296b"
 )
 
 @app.route('/tripplan', methods=['POST'])
@@ -77,7 +77,7 @@ def postdata():
 
     # Call OpenAI API with the dynamic prompt
     response = client.chat.completions.create(
-        model='gpt-3.5-turbo',
+        model='gpt-4',
         messages=[
             {"role": "user", "content": prompt}
         ]
