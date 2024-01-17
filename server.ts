@@ -23,6 +23,8 @@ export const userController = new UserController(userService);
 
 import { userRoute } from "./route/userRoute";
 
+app.use(express.static("public"));
+app.use(express.static("private"));
 app.use(userRoute);
 app.get("/hi", (req: Request, res: Response) => {
   res.send("im hihi");
@@ -113,8 +115,6 @@ app.get("/tripplan_result", async (req: Request, res: Response) => {
 
 
 
-app.use(express.static("public"));
-app.use(express.static("private"));
 app.use((req, res, next) =>
   next(
     new HttpError(
