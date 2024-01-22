@@ -65,7 +65,7 @@ function loadEnv() {
           DB_NAME: '',
           DB_USERNAME: '',
           DB_PASSWORD: '',
-          SESSION_SECRET: 'jodsjgklsgd',
+          SESSION_SECRET: '',
         }
       populateEnv(env, { mode: 'halt' })
       // console.log("check env",env)

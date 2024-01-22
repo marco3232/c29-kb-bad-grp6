@@ -51,53 +51,44 @@ aria-label="Fifth navbar example"
 </div>
 </nav>`;
 
-async function getUserId () {
-  const controller = new AbortController();
-  const signal = controller.signal;
-
-  const timeout = setTimeout(() => {
-    controller.abort();
-    console.log("Request aborted due to timeout for fetch userid");
-  }, 1000);
-
+async function getUserId() {
   try {
-    let res = await fetch("/user/userid", { signal });
+    let res = await fetch("/user/userid");
     console.log("let me see see res index js 111", res);
 
     if (res.status == 200) {
-      clearTimeout(timeout);
+      // clearTimeout(timeout);
 
       let result = await res.json();
-      console.log("Check indjs delay 222", result);
 
-      document.querySelector(
-        "#id-display"
-      ).innerHTML = `
-          <h1 class="id-font">User id#${result.data}</h1>`;
-
-      console.log("check result in index js333");
-
-      document.querySelector(
-        "#login-button"
-      ).innerHTML = `<div class="nav-item center-button" id="logout-button" role="button">
-                <a class="user-icon">
-                <div class="bi bi-person-fill icon-color"></div>
-                <div class="button-text">Logout</div>
-              </a>
-              </div>`;
-      document.querySelector("#regis-button").innerHTML = "";
-
-      addLogoutEventListener();
-      console.log("check indjs delay addeventlis 444");
+      showUserId(result);
     }
   } catch (error) {
-    if (error.name === "AbortError") {
-      console.log("Request aborted");
-    } else {
-      console.log("Error occurred during fetch:", error);
-    }
+    console.log("Error occurred during fetch:", error);
   }
-};
+}
+
+function showUserId(result) {
+  console.log("Check indjs delay 222", result);
+
+  document.querySelector("#id-display").innerHTML = `
+      <h1 class="id-font">User id#${result.data}</h1>`;
+
+  console.log("check result in index js333");
+
+  document.querySelector(
+    "#login-button"
+  ).innerHTML = `<div class="nav-item center-button" id="logout-button" role="button">
+            <a class="user-icon">
+            <div class="bi bi-person-fill icon-color"></div>
+            <div class="button-text">Logout</div>
+          </a>
+          </div>`;
+  document.querySelector("#regis-button").innerHTML = "";
+
+  addLogoutEventListener();
+  console.log("check indjs delay addeventlis 444");
+}
 
 function addLogoutEventListener() {
   let target = document.querySelector("#logout-button");

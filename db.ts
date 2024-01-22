@@ -1,6 +1,8 @@
 import Knex from "knex";
 import { env } from "./env";
 
+
+console.log("big check" , env)
 export function createKnex() {
   let config = require("./knexfile");
   let profile = config[env.NODE_ENV];
