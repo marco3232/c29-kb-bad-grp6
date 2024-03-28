@@ -1,28 +1,4 @@
-# ubuntu server setup
-### 
-
-```
-1. cd /etc/nginx/conf.d
-2. sudo vim rentngo.marcoding.me
-
-3.server {
-  listen 80;
-  listen [::]:80;
-
-  server_name rentngo.marcoding.me;
-
-  location / {
-    proxy_pass http://localhost:9090;
-    proxy_http_version 1.1;
-    proxy_set_header Upgrade $http_upgrade;
-    proxy_set_header Connection 'upgrade';
-    proxy_set_header Host $host;
-    proxy_cache_bypass $http_upgrade;
-  }
-}
-```
-## create folder with your project
-```
-cd ~
-mkdir rentngo
-```
+* Developed a comprehensive car rental website and planning service that enables users to easily search, book, and plan their car rentals.
+* Implemented CI/CD practices using AWS services to automate the deployment.
+* Utilized Python for seamless integration of AI capabilities into the website.
+* Technologies Used: HTML, CSS, JavaScript, TypeScript, Node.js, Express.js, RESTful API, PostgreSQL, Knex, Pyhon, OpanAI API,  Linux AWS services(EC2, Route53).
